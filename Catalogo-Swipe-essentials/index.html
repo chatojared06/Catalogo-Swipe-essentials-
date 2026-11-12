@@ -437,30 +437,10 @@
         let searchQuery = '';
         let cart = {}; // { productId: quantity }
 
-        /*__EMBEDDED_IMAGES_START__*/
-        const EMBEDDED_IMAGES = {};
-        /*__EMBEDDED_IMAGES_END__*/
-
-        function handleImgFallback(imgEl, productId) {
-            const tried = imgEl.dataset.tried || 'png';
-            if (tried === 'png') {
-                imgEl.dataset.tried = 'jpg';
-                imgEl.src = `img/${productId}.jpg`;
-            } else if (tried === 'jpg') {
-                imgEl.dataset.tried = 'jpeg';
-                imgEl.src = `img/${productId}.jpeg`;
-            } else if (tried === 'jpeg') {
-                imgEl.dataset.tried = 'webp';
-                imgEl.src = `img/${productId}.webp`;
-            } else {
-                imgEl.style.display = 'none';
-                if (imgEl.nextElementSibling) {
-                    imgEl.nextElementSibling.classList.remove('hidden');
-                }
-            }
-        }
-
         const PRODUCTS = [
+            // =========================================================================
+            // PRODUCTO 1: SWIPE LÍQUIDO 1L
+            // =========================================================================
             {
                 id: 'swipe-1l',
                 name: 'SWIPE Líquido 1L',
@@ -468,7 +448,11 @@
                 category: 'Limpieza General',
                 badge: 'Más Vendido • Rinde hasta 200 botellas',
                 badgeColor: 'bg-blue-600 text-white',
-                imgUrl: 'img/swipe-1l.png',
+
+                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: SWIPE LÍQUIDO 1L 👇👇👇 */
+                imgUrl: '/Catalogo-Swipe-essentials/img/swipe-1.jpg',
+                /* 👆👆👆 =============================================================== 👆👆👆 */
+
                 shortDesc: 'Limpiador líquido multiusos súper concentrado y biodegradable. Indispensable en cocina, lavandería, baño, automóvil y toda la casa.',
                 whatsappText: 'Hola, quiero pedir SWIPE Líquido de 1L ($191.00 MXN).',
                 yieldHighlight: 'Rinde 200 pistolas Livianas, 25 Normales o 10 Pesadas de ½ Litro',
@@ -493,6 +477,10 @@
                     }
                 ]
             },
+
+            // =========================================================================
+            // PRODUCTO 2: SWIPE LÍQUIDO 3.5L
+            // =========================================================================
             {
                 id: 'swipe-35l',
                 name: 'SWIPE Líquido 3.5L',
@@ -500,7 +488,11 @@
                 category: 'Limpieza General',
                 badge: 'Máximo Ahorro Familiar',
                 badgeColor: 'bg-indigo-700 text-white',
-                imgUrl: 'img/swipe-35l.png',
+
+                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: SWIPE LÍQUIDO 3.5L 👇👇👇 */
+                imgUrl: '/Catalogo-Swipe-essentials/img/swipe-3.5.jpg',
+                /* 👆👆👆 ================================================================= 👆👆👆 */
+
                 shortDesc: 'El poder multiusos de SWIPE en garrafa económica de 3.5 Litros. Ideal para abastecer tu hogar por meses con el menor costo por litro.',
                 whatsappText: 'Hola, quiero pedir SWIPE Líquido de 3.5L ($573.00 MXN).',
                 yieldHighlight: 'Rinde hasta 700 pistolas Livianas o 87 pistolas Normales de ½ Litro',
@@ -525,6 +517,10 @@
                     }
                 ]
             },
+
+            // =========================================================================
+            // PRODUCTO 3: SWIPOL 1L
+            // =========================================================================
             {
                 id: 'swipol-1l',
                 name: 'SWIPOL 1L',
@@ -532,7 +528,11 @@
                 category: 'Limpieza General',
                 badge: 'Desinfectante 4ta Generación',
                 badgeColor: 'bg-emerald-600 text-white',
-                imgUrl: 'img/swipol-1l.png',
+
+                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: SWIPOL 1L 👇👇👇 */
+                imgUrl: '/Catalogo-Swipe-essentials/img/swipol.jpg',
+                /* 👆👆👆 ======================================================== 👆👆👆 */
+
                 shortDesc: 'Desinfectante concentrado biodegradable de cuarta generación, no carcinogénico y de tecnología avanzada. Elimina virus, bacterias y hongos en 30 segundos.',
                 whatsappText: 'Hola, quiero pedir el desinfectante SWIPOL de 1L ($198.00 MXN).',
                 yieldHighlight: 'Rinde 40 botellas rociadoras de ½ L o 120 Litros para trapear',
@@ -551,6 +551,10 @@
                     }
                 ]
             },
+
+            // =========================================================================
+            // PRODUCTO 4: PISTOLA SWIPE
+            // =========================================================================
             {
                 id: 'pistola-swipe',
                 name: 'Pistola SWIPE',
@@ -558,7 +562,11 @@
                 category: 'Limpieza General',
                 badge: 'Accesorio Indispensable',
                 badgeColor: 'bg-amber-500 text-slate-950',
-                imgUrl: 'img/pistola-swipe.png',
+
+                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: PISTOLA SWIPE 👇👇👇 */
+                imgUrl: '/Catalogo-Swipe-essentials/img/spray-swipe.jpg',
+                /* 👆👆👆 ============================================================ 👆👆👆 */
+
                 shortDesc: 'Botella rociadora oficial de ½ litro de uso rudo con gatillo regulable. Graduada para preparar tus soluciones Liviana, Normal y Pesada sin desperdicios.',
                 whatsappText: 'Hola, quiero pedir la Pistola Rociadora SWIPE ($65.00 MXN).',
                 yieldHighlight: 'Capacidad de 500 ml con marcas de medición exacta',
@@ -571,6 +579,10 @@
                     }
                 ]
             },
+
+            // =========================================================================
+            // PRODUCTO 5: BRITE 1L
+            // =========================================================================
             {
                 id: 'brite-1l',
                 name: 'BRITE 1L',
@@ -578,7 +590,11 @@
                 category: 'Baños',
                 badge: 'Adiós al Sarro • 100% Activo',
                 badgeColor: 'bg-teal-600 text-white',
-                imgUrl: 'img/brite-1l.png',
+
+                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: BRITE 1L 👇👇👇 */
+                imgUrl: '/Catalogo-Swipe-essentials/img/brite-1.jpg',
+                /* 👆👆👆 ======================================================= 👆👆👆 */
+
                 shortDesc: 'Limpiador ácido concentrado que limpia, desinfecta y desodoriza. Quita el sarro calcáreo en inodoros, azulejos y porcelana de acción rápida.',
                 whatsappText: 'Hola, quiero pedir BRITE Líquido de 1L ($181.00 MXN).',
                 yieldHighlight: 'Fórmula 100% activa e inofensiva para tuberías y fosas sépticas',
@@ -591,6 +607,10 @@
                     }
                 ]
             },
+
+            // =========================================================================
+            // PRODUCTO 6: BRITE 3.5L
+            // =========================================================================
             {
                 id: 'brite-35l',
                 name: 'BRITE 3.5L',
@@ -598,7 +618,11 @@
                 category: 'Baños',
                 badge: 'Garrafa Ahorradora Baños',
                 badgeColor: 'bg-teal-700 text-white',
-                imgUrl: 'img/brite-35l.png',
+
+                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: BRITE 3.5L 👇👇👇 */
+                imgUrl: '/Catalogo-Swipe-essentials/img/brite-3.5l.jpg',
+                /* 👆👆👆 ========================================================= 👆👆👆 */
+
                 shortDesc: 'Presentación de 3.5 Litros del limpiador ácido concentrado que limpia, desinfecta y desodoriza eliminando el sarro más difícil en baños.',
                 whatsappText: 'Hola, quiero pedir BRITE Líquido de 3.5L ($543.00 MXN).',
                 yieldHighlight: '3.5 Litros de poder desensarrante y desinfectante 100% activo',
@@ -611,6 +635,10 @@
                     }
                 ]
             },
+
+            // =========================================================================
+            // PRODUCTO 7: BRITE GEL 1L
+            // =========================================================================
             {
                 id: 'brite-gel-1l',
                 name: 'BRITE GEL 1L',
@@ -618,7 +646,11 @@
                 category: 'Baños',
                 badge: 'Mayor Adherencia en Gel',
                 badgeColor: 'bg-emerald-700 text-white',
-                imgUrl: 'img/brite-gel-1l.png',
+
+                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: BRITE GEL 1L 👇👇👇 */
+                imgUrl: '/Catalogo-Swipe-essentials/img/brite-gel-1.jpg',
+                /* 👆👆👆 =========================================================== 👆👆👆 */
+
                 shortDesc: 'Versión en gel más concentrada y con mayor poder desinfectante. Se adhiere a las paredes del inodoro y regadera disminuyendo el desperdicio.',
                 whatsappText: 'Hola, quiero pedir BRITE GEL de 1L ($192.00 MXN).',
                 yieldHighlight: 'Consistencia en gel que no es escurre y actúa por más tiempo',
@@ -631,6 +663,10 @@
                     }
                 ]
             },
+
+            // =========================================================================
+            // PRODUCTO 8: APLICADOR BRITE
+            // =========================================================================
             {
                 id: 'aplicador-brite',
                 name: 'Aplicador BRITE',
@@ -638,7 +674,11 @@
                 category: 'Baños',
                 badge: 'Complemento Ideal',
                 badgeColor: 'bg-teal-100 text-teal-900',
-                imgUrl: 'img/aplicador-brite.png',
+
+                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: APLICADOR BRITE 👇👇👇 */
+                imgUrl: '/Catalogo-Swipe-essentials/img/aplicador-brite.jpg',
+                /* 👆👆👆 ============================================================== 👆👆👆 */
+
                 shortDesc: 'Hisopo aplicador ergonómico con borla suave que no raya la porcelana. Permite distribuir Brite y Brite Gel uniformemente sin ensuciarte las manos.',
                 whatsappText: 'Hola, quiero pedir el Aplicador BRITE ($59.00 MXN).',
                 yieldHighlight: 'Fibras suaves lavables que aprovechan cada gota de Brite',
@@ -651,6 +691,10 @@
                     }
                 ]
             },
+
+            // =========================================================================
+            // PRODUCTO 9: MAGIC OCEAN BREEZE 3.5L
+            // =========================================================================
             {
                 id: 'magic-ocean',
                 name: 'MAGIC Ocean Breeze 3.5L',
@@ -658,7 +702,11 @@
                 category: 'Pisos',
                 badge: '1L Rinde 125 Litros',
                 badgeColor: 'bg-sky-600 text-white',
-                imgUrl: 'img/magic-ocean.png',
+
+                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: MAGIC OCEAN BREEZE 3.5L 👇👇👇 */
+                imgUrl: '/Catalogo-Swipe-essentials/img/magic-ocean.jpg',
+                /* 👆👆👆 ====================================================================== 👆👆👆 */
+
                 shortDesc: 'Limpiador, aromatizante y desinfectante concentrado para pisos con fresco aroma a brisa marina que perdura por horas.',
                 whatsappText: 'Hola, quiero pedir MAGIC Ocean Breeze de 3.5L ($354.00 MXN).',
                 yieldHighlight: '1 Litro rinde 125 Litros • ¡La garrafa rinde hasta 437.5 Litros!',
@@ -677,6 +725,10 @@
                     }
                 ]
             },
+
+            // =========================================================================
+            // PRODUCTO 10: MAGIC LEMON LIME 3.5L
+            // =========================================================================
             {
                 id: 'magic-lemon',
                 name: 'MAGIC Lemon Lime 3.5L',
@@ -684,7 +736,11 @@
                 category: 'Pisos',
                 badge: '1L Rinde 125 Litros',
                 badgeColor: 'bg-lime-600 text-white',
-                imgUrl: 'img/magic-lemon.png',
+
+                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: MAGIC LEMON LIME 3.5L 👇👇👇 */
+                imgUrl: '/Catalogo-Swipe-essentials/img/magic-lemon.jpg',
+                /* 👆👆👆 ==================================================================== 👆👆👆 */
+
                 shortDesc: 'Limpiador, aromatizante y desinfectante concentrado para pisos con revitalizante aroma cítrico a limón-lima.',
                 whatsappText: 'Hola, quiero pedir MAGIC Lemon Lime de 3.5L ($354.00 MXN).',
                 yieldHighlight: '1 Litro rinde 125 Litros • ¡La garrafa rinde hasta 437.5 Litros!',
@@ -703,6 +759,10 @@
                     }
                 ]
             },
+
+            // =========================================================================
+            // PRODUCTO 11: MAGIC LAVENDER 3.5L
+            // =========================================================================
             {
                 id: 'magic-lavender',
                 name: 'MAGIC Lavender 3.5L',
@@ -710,7 +770,11 @@
                 category: 'Pisos',
                 badge: '1L Rinde 125 Litros',
                 badgeColor: 'bg-purple-600 text-white',
-                imgUrl: 'img/magic-lavender.png',
+
+                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: MAGIC LAVENDER 3.5L 👇👇👇 */
+                imgUrl: '/Catalogo-Swipe-essentials/img/magic-lav.jpg',
+                /* 👆👆👆 ================================================================== 👆👆👆 */
+
                 shortDesc: 'Limpiador, aromatizante y desinfectante concentrado para pisos con el clásico y relajante aroma a lavanda.',
                 whatsappText: 'Hola, quiero pedir MAGIC Lavender de 3.5L ($354.00 MXN).',
                 yieldHighlight: '1 Litro rinde 125 Litros • ¡La garrafa rinde hasta 437.5 Litros!',
@@ -729,6 +793,10 @@
                     }
                 ]
             },
+
+            // =========================================================================
+            // PRODUCTO 12: GREASE QUITACOCHAMBRE 500ML
+            // =========================================================================
             {
                 id: 'grease-500ml',
                 name: 'GREASE Quitacochambre 500ml',
@@ -736,7 +804,11 @@
                 category: 'Cocina',
                 badge: 'Destructor de Cochambre',
                 badgeColor: 'bg-red-600 text-white',
-                imgUrl: 'img/grease-500ml.png',
+
+                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: GREASE 500ML 👇👇👇 */
+                imgUrl: '/Catalogo-Swipe-essentials/img/grease.jpg',
+                /* 👆👆👆 =========================================================== 👆👆👆 */
+
                 shortDesc: 'Quitacochambre biodegradable de máxima potencia. Destruye grasa carbonizada y cochambre pegado en campanas, estufas, parrillas y hornos.',
                 whatsappText: 'Hola, quiero pedir el quitacochambre GREASE de 500ml ($166.00 MXN).',
                 yieldHighlight: 'Fórmula concentrada contra grasa quemada e incrustada',
@@ -749,6 +821,10 @@
                     }
                 ]
             },
+
+            // =========================================================================
+            // PRODUCTO 13: SWIPE WHITE 1.2 KG
+            // =========================================================================
             {
                 id: 'white-12kg',
                 name: 'SWIPE WHITE 1.2 Kg',
@@ -756,7 +832,11 @@
                 category: 'Lavandería',
                 badge: 'Caja con 30 Sobres de 40g',
                 badgeColor: 'bg-sky-500 text-white',
-                imgUrl: 'img/white-12kg.png',
+
+                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: SWIPE WHITE 1.2 KG 👇👇👇 */
+                imgUrl: '/Catalogo-Swipe-essentials/img/white.jpg',
+                /* 👆👆👆 ================================================================= 👆👆👆 */
+
                 shortDesc: 'Detergente concentrado en polvo de baja espuma para ropa blanca y de colores firmes. Con cristales de blancura óptica y agentes antirredepositantes.',
                 whatsappText: 'Hola, quiero pedir el detergente SWIPE WHITE de 1.2 Kg ($309.00 MXN).',
                 yieldHighlight: '1 sobre de 40g lava de 4 a 5 Kg de ropa • Rinde 30 cargas completas',
@@ -769,6 +849,10 @@
                     }
                 ]
             },
+
+            // =========================================================================
+            // PRODUCTO 14: SWIPE-A-FLY 500ML
+            // =========================================================================
             {
                 id: 'swipe-a-fly',
                 name: 'SWIPE-A-FLY 500ml',
@@ -776,7 +860,11 @@
                 category: 'Control de Plagas',
                 badge: 'Insecticida Biodegradable',
                 badgeColor: 'bg-amber-600 text-white',
-                imgUrl: 'img/swipe-a-fly.png',
+
+                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: SWIPE-A-FLY 500ML 👇👇👇 */
+                imgUrl: '/Catalogo-Swipe-essentials/img/afly.jpg',
+                /* 👆👆👆 ================================================================ 👆👆👆 */
+
                 shortDesc: 'Insecticida concentrado emulsionable y biodegradable a base de piretrina. Protección eficaz contra plagas voladoras y rastreras en uso doméstico.',
                 whatsappText: 'Hola, quiero pedir el insecticida SWIPE-A-FLY de 500ml ($250.00 MXN).',
                 yieldHighlight: 'Fórmula concentrada emulsionable en agua',
@@ -789,6 +877,10 @@
                     }
                 ]
             },
+
+            // =========================================================================
+            // PRODUCTO 15: PISTOLA SWIPE-A-FLY
+            // =========================================================================
             {
                 id: 'pistola-fly',
                 name: 'Pistola SWIPE-A-FLY',
@@ -796,7 +888,11 @@
                 category: 'Control de Plagas',
                 badge: 'Aplicador Etiquetado',
                 badgeColor: 'bg-amber-100 text-amber-900',
-                imgUrl: 'img/pistola-fly.png',
+
+                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: PISTOLA SWIPE-A-FLY 👇👇👇 */
+                imgUrl: '/Catalogo-Swipe-essentials/img/spray-aFly.jpg',
+                /* 👆👆👆 ================================================================== 👆👆👆 */
+
                 shortDesc: 'Botella rociadora oficial claramente identificada para preparar y aplicar tus diluciones de insecticida Swipe-A-Fly con total seguridad.',
                 whatsappText: 'Hola, quiero pedir la Pistola Rociadora SWIPE-A-FLY ($65.00 MXN).',
                 yieldHighlight: 'Evita confusiones o contaminación con otros limpiadores',
@@ -814,10 +910,6 @@
         // ==========================================
         // 2. RENDERIZADO DE PRODUCTOS
         // ==========================================
-        function getCustomStoredImage(productId) {
-            return localStorage.getItem('swipe_img_' + productId) || EMBEDDED_IMAGES[productId] || null;
-        }
-
         function renderProducts() {
             const grid = document.getElementById('productsGrid');
             const emptyState = document.getElementById('emptySearchState');
@@ -846,8 +938,7 @@
             }
 
             grid.innerHTML = filtered.map(p => {
-                const customImg = getCustomStoredImage(p.id);
-                const imgSource = customImg || p.imgUrl;
+                const imgSource = p.imgUrl;
                 const inCartQty = cart[p.id] || 0;
                 const waUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(p.whatsappText)}`;
 
@@ -867,7 +958,7 @@
                     return `
                     <article class="bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden card-hover p-5 sm:p-6 flex flex-col md:flex-row gap-6 items-center md:items-start">
                         <div class="relative w-40 h-48 shrink-0 bg-slate-50 rounded-2xl p-3 flex items-center justify-center border border-slate-100">
-                            <img src="${imgSource}" alt="${p.name}" class="max-h-full max-w-full object-contain" onerror="handleImgFallback(this, '${p.id}')">
+                            <img src="${imgSource}" alt="${p.name}" class="max-h-full max-w-full object-contain">
                         </div>
 
                         <div class="flex-1 w-full space-y-3">
@@ -915,7 +1006,7 @@
                             <span class="absolute top-3.5 right-3.5 z-10 text-[11px] font-extrabold px-3 py-1 rounded-full shadow-sm ${p.badgeColor}">
                                 ${p.badge}
                             </span>
-                            <img src="${imgSource}" alt="${p.name}" class="max-h-44 max-w-full object-contain transition-transform duration-300 hover:scale-105" onerror="handleImgFallback(this, '${p.id}')">
+                            <img src="${imgSource}" alt="${p.name}" class="max-h-44 max-w-full object-contain transition-transform duration-300 hover:scale-105">
                         </div>
 
                         <!-- Card Content -->
@@ -1017,8 +1108,7 @@
             const p = PRODUCTS.find(item => item.id === productId);
             if (!p) return;
 
-            const customImg = getCustomStoredImage(p.id);
-            const imgSource = customImg || p.imgUrl;
+            const imgSource = p.imgUrl;
             const waUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(p.whatsappText)}`;
 
             const modal = document.getElementById('productModal');
@@ -1038,7 +1128,7 @@
 
                     <div class="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
                         <div class="sm:col-span-5 bg-slate-50 rounded-2xl p-6 flex items-center justify-center h-60 border border-slate-100">
-                            <img src="${imgSource}" alt="${p.name}" class="max-h-48 max-w-full object-contain" onerror="handleImgFallback(this, '${p.id}')">
+                            <img src="${imgSource}" alt="${p.name}" class="max-h-48 max-w-full object-contain">
                         </div>
                         <div class="sm:col-span-7 space-y-3">
                             <div class="font-display font-black text-3xl text-red-600">$${p.price.toFixed(2)} <span class="text-sm font-bold text-slate-400">MXN</span></div>
