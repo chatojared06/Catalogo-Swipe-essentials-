@@ -3,31 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo Digital SWIPE | Alto Rendimiento Biodegradable</title>
+    <title>Catálogo Digital SWIPE | Limpieza Biodegradable</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                        sans: ['Poppins', 'sans-serif'],
                     },
                     colors: {
                         swipe: {
                             blue: '#0f296b',
-                            lightBlue: '#1e40af',
-                            red: '#e11d48',
-                            yellow: '#facc15',
-                            green: '#0d9488',
-                            whatsapp: '#25D366',
-                            whatsappDark: '#128C7E'
+                            whatsapp: '#25D366'
                         }
                     }
                 }
@@ -36,1151 +30,455 @@
     </script>
 
     <style>
-        /* Custom Scrollbar & Visual Polish */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f5f9; }
-        ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 9999px; }
-        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
-
-        .hero-gradient {
-            background: radial-gradient(circle at 80% 20%, #1e40af 0%, #0f172a 75%);
-        }
-        .card-hover {
-            transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .card-hover:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.12), 0 8px 10px -6px rgba(15, 23, 42, 0.08);
-        }
-        .whatsapp-pulse {
-            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-            animation: pulse-green 2s infinite;
-        }
-        @keyframes pulse-green {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
-            70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        body { background-color: #f8fafc; }
+        /* Ocultar flecha nativa del details para poner la nuestra */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        
+        /* Animación suave para el carrito */
+        .drawer-open { transform: translateX(0%); }
+        .drawer-closed { transform: translateX(100%); }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-600 selection:text-white pb-24">
+<body class="text-slate-800 antialiased pb-24">
 
-    <!-- TOP ANNOUNCEMENT BAR -->
-    <div class="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 text-white text-xs sm:text-sm py-2.5 px-4 text-center font-medium shadow-sm">
-        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-x-6 gap-y-1">
-            <span class="flex items-center gap-1.5">
-                <i class="fa-solid fa-leaf text-emerald-200"></i>
-                <strong>100% Biodegradables:</strong> Fórmulas concentradas de alto rendimiento
-            </span>
-            <span class="hidden sm:inline text-emerald-300">•</span>
-            <span class="flex items-center gap-1.5">
-                <i class="fa-brands fa-whatsapp text-emerald-200 text-base"></i>
-                Pedidos rápidos en 1 clic directo a WhatsApp
-            </span>
-        </div>
+    <!-- CINTA SUPERIOR -->
+    <div class="bg-emerald-500 text-white text-sm py-2 px-4 text-center font-medium shadow-sm">
+        <i class="fa-solid fa-leaf mr-1"></i> Productos 100% Biodegradables y Seguros
     </div>
 
-    <!-- STICKY HEADER -->
-    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-3">
-            <!-- Brand Logo -->
-            <a href="#" class="flex items-center gap-3 group focus:outline-none">
-                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-blue-700 to-slate-900 flex items-center justify-center shadow-md shadow-blue-900/20 group-hover:scale-105 transition-transform overflow-hidden">
-                    <span class="font-display font-black text-yellow-400 text-lg sm:text-xl tracking-tighter drop-shadow select-none">SW</span>
+    <!-- ENCABEZADO FIJO -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <!-- Logo SWIPE -->
+                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-swipe-blue flex items-center justify-center shadow-md">
+                    <span class="font-bold text-yellow-400 text-lg sm:text-xl tracking-tighter">SW</span>
                 </div>
                 <div>
-                    <div class="flex items-center gap-2">
-                        <span class="font-display font-black text-xl sm:text-2xl tracking-tight text-slate-900">SWIPE</span>
-                        <span class="text-[10px] font-bold uppercase tracking-wider bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full">Catálogo</span>
-                    </div>
-                    <p class="text-xs text-slate-500 hidden sm:block">Soluciones Concentradas para el Hogar</p>
-                </div>
-            </a>
-
-            <!-- Live Search Bar (Desktop & Tablet) -->
-            <div class="hidden md:flex flex-1 max-w-md mx-4">
-                <div class="relative w-full">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                    <input 
-                        type="text" 
-                        id="searchInputDesktop" 
-                        placeholder="Buscar producto, uso (ej. sarro, grasa, pisos, ropa)..." 
-                        class="w-full pl-10 pr-9 py-2.5 bg-slate-100 hover:bg-slate-200/60 focus:bg-white rounded-xl text-sm text-slate-800 placeholder-slate-400 border border-transparent focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 focus:outline-none transition-all"
-                    >
-                    <button id="clearSearchDesktop" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
-                        <i class="fa-solid fa-circle-xmark"></i>
-                    </button>
+                    <h1 class="font-bold text-xl text-slate-900 leading-none">SWIPE</h1>
+                    <p class="text-xs text-slate-500 mt-1">Catálogo Oficial</p>
                 </div>
             </div>
-
-            <!-- Right Actions: Calculator & Cart -->
+            
+            <!-- Botones de Acción Superiores -->
             <div class="flex items-center gap-2 sm:gap-3">
-                <a href="#calculadora" class="hidden lg:inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold text-blue-700 bg-blue-50 hover:bg-blue-100 transition-colors">
-                    <i class="fa-solid fa-flask-vial"></i>
-                    <span>Calculadora de Dilución</span>
+                <a href="https://wa.me/526633285583?text=Hola,%20tengo%20una%20duda%20sobre%20los%20productos%20SWIPE" target="_blank" title="Dudas por WhatsApp" class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl hover:bg-emerald-100 transition">
+                    <i class="fa-brands fa-whatsapp"></i>
                 </a>
-
-                <!-- Cart / Multi-Order Trigger -->
-                <button onclick="toggleCartDrawer(true)" class="relative inline-flex items-center gap-2 px-3.5 sm:px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-semibold shadow-sm transition-all">
-                    <i class="fa-solid fa-basket-shopping text-yellow-400"></i>
-                    <span class="hidden sm:inline">Mi Pedido</span>
-                    <span id="cartCountBadge" class="px-2 py-0.5 text-xs font-extrabold rounded-full bg-yellow-400 text-slate-900">0</span>
+                
+                <!-- Botón de Mi Lista (Carrito) -->
+                <button onclick="toggleCartDrawer(true)" class="relative inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold shadow-md transition-all">
+                    <i class="fa-solid fa-cart-shopping text-yellow-400"></i>
+                    <span class="hidden sm:inline">Mi Lista</span>
+                    <span id="cartCountBadge" class="absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center text-[10px] font-extrabold rounded-full bg-yellow-400 text-slate-900 border-2 border-slate-900">0</span>
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Search Bar -->
-        <div class="md:hidden px-4 pb-3">
-            <div class="relative w-full">
-                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                <input 
-                    type="text" 
-                    id="searchInputMobile" 
-                    placeholder="Buscar producto o qué deseas limpiar..." 
-                    class="w-full pl-10 pr-9 py-2 bg-slate-100 focus:bg-white rounded-xl text-sm text-slate-800 placeholder-slate-400 border border-transparent focus:border-blue-600 focus:outline-none transition-all"
-                >
-            </div>
-        </div>
-
-        <!-- Category Filter Pills -->
-        <div class="bg-slate-50/90 border-t border-slate-200/70">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center gap-2 overflow-x-auto no-scrollbar" id="categoryNav">
-                <button onclick="filterByCategory('Todos')" data-cat="Todos" class="cat-btn active shrink-0 px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-blue-700 text-white shadow-sm">
-                    <i class="fa-solid fa-layer-group mr-1.5"></i>Todos (15)
-                </button>
-                <button onclick="filterByCategory('Limpieza General')" data-cat="Limpieza General" class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all bg-white text-slate-600 hover:bg-slate-200/70 border border-slate-200">
-                    <i class="fa-solid fa-spray-can-sparkles mr-1.5 text-blue-600"></i>Limpieza General &amp; Desinfección
-                </button>
-                <button onclick="filterByCategory('Baños')" data-cat="Baños" class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all bg-white text-slate-600 hover:bg-slate-200/70 border border-slate-200">
-                    <i class="fa-solid fa-shower mr-1.5 text-emerald-600"></i>Baños Impecables
-                </button>
-                <button onclick="filterByCategory('Pisos')" data-cat="Pisos" class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all bg-white text-slate-600 hover:bg-slate-200/70 border border-slate-200">
-                    <i class="fa-solid fa-wand-magic-sparkles mr-1.5 text-purple-600"></i>Pisos (Línea Magic)
-                </button>
-                <button onclick="filterByCategory('Cocina')" data-cat="Cocina" class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all bg-white text-slate-600 hover:bg-slate-200/70 border border-slate-200">
-                    <i class="fa-solid fa-fire-burner mr-1.5 text-red-600"></i>Cocina sin Grasa
-                </button>
-                <button onclick="filterByCategory('Lavandería')" data-cat="Lavandería" class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all bg-white text-slate-600 hover:bg-slate-200/70 border border-slate-200">
-                    <i class="fa-solid fa-shirt mr-1.5 text-sky-500"></i>Cuarto de Lavar
-                </button>
-                <button onclick="filterByCategory('Control de Plagas')" data-cat="Control de Plagas" class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all bg-white text-slate-600 hover:bg-slate-200/70 border border-slate-200">
-                    <i class="fa-solid fa-shield-halved mr-1.5 text-amber-600"></i>Control de Plagas
-                </button>
-            </div>
+        <!-- FILTROS -->
+        <div class="max-w-5xl mx-auto px-4 py-3 flex gap-2 overflow-x-auto" style="scrollbar-width: none;">
+            <button onclick="filterByCategory('Todos')" data-cat="Todos" class="cat-btn shrink-0 px-5 py-2 rounded-full text-sm font-semibold bg-emerald-600 text-white shadow-md transition-all">Todos</button>
+            <button onclick="filterByCategory('Limpieza General')" data-cat="Limpieza General" class="cat-btn shrink-0 px-5 py-2 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">Limpieza General</button>
+            <button onclick="filterByCategory('Baños')" data-cat="Baños" class="cat-btn shrink-0 px-5 py-2 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">Baños</button>
+            <button onclick="filterByCategory('Pisos')" data-cat="Pisos" class="cat-btn shrink-0 px-5 py-2 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">Pisos</button>
+            <button onclick="filterByCategory('Cocina')" data-cat="Cocina" class="cat-btn shrink-0 px-5 py-2 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">Cocina</button>
+            <button onclick="filterByCategory('Lavandería')" data-cat="Lavandería" class="cat-btn shrink-0 px-5 py-2 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">Lavandería</button>
+            <button onclick="filterByCategory('Control de Plagas')" data-cat="Control de Plagas" class="cat-btn shrink-0 px-5 py-2 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">Plagas</button>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="hero-gradient text-white relative overflow-hidden">
-        <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-blue-500/20 blur-3xl pointer-events-none"></div>
-        <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-emerald-500/15 blur-3xl pointer-events-none"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div class="lg:col-span-7 space-y-5 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs sm:text-sm font-semibold text-yellow-300">
-                        <i class="fa-solid fa-award"></i>
-                        <span>Calidad Oficial HomeCare • Fórmulas Concentradas</span>
-                    </div>
-                    <h1 class="font-display font-black text-3xl sm:text-5xl lg:text-5xl tracking-tight leading-tight">
-                        Limpieza Profesional que <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-400">Rinde Decenas de Litros</span>
-                    </h1>
-                    <p class="text-slate-200 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                        Conoce la línea completa de productos concentrados <strong>SWIPE</strong>. Consulta las tablas de dilución exacta para ahorrar al máximo y haz tu pedido directo por <strong>WhatsApp con un solo clic</strong>.
-                    </p>
-                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
-                        <a href="#catalogo" class="px-6 py-3.5 rounded-2xl bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-display font-extrabold text-sm sm:text-base shadow-lg shadow-yellow-400/20 transition-all flex items-center gap-2">
-                            <span>Ver los 15 Productos</span>
-                            <i class="fa-solid fa-arrow-down"></i>
-                        </a>
-                        <a href="#calculadora" class="px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-semibold text-sm sm:text-base border border-white/20 transition-all flex items-center gap-2">
-                            <i class="fa-solid fa-calculator text-yellow-300"></i>
-                            <span>Calcular Rendimiento</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="lg:col-span-5 grid grid-cols-2 gap-3 sm:gap-4">
-                    <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 sm:p-5">
-                        <div class="w-10 h-10 rounded-xl bg-blue-500/30 flex items-center justify-center text-yellow-300 text-lg mb-3">
-                            <i class="fa-solid fa-droplet"></i>
-                        </div>
-                        <div class="font-display font-black text-2xl sm:text-3xl text-white">1 : 100</div>
-                        <div class="text-xs sm:text-sm font-semibold text-blue-200 mt-0.5">Dilución Liviana Swipe</div>
-                        <p class="text-xs text-slate-300 mt-1.5">Solo 5 ml en ½ litro de agua. ¡1 litro rinde hasta 200 botellas!</p>
-                    </div>
-
-                    <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 sm:p-5">
-                        <div class="w-10 h-10 rounded-xl bg-purple-500/30 flex items-center justify-center text-purple-200 text-lg mb-3">
-                            <i class="fa-solid fa-bucket"></i>
-                        </div>
-                        <div class="font-display font-black text-2xl sm:text-3xl text-white">437 L</div>
-                        <div class="text-xs sm:text-sm font-semibold text-purple-200 mt-0.5">Rendimiento Magic 3.5L</div>
-                        <p class="text-xs text-slate-300 mt-1.5">Cada litro rinde 125 litros de solución aromática para pisos.</p>
-                    </div>
-
-                    <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 sm:p-5">
-                        <div class="w-10 h-10 rounded-xl bg-sky-500/30 flex items-center justify-center text-sky-200 text-lg mb-3">
-                            <i class="fa-solid fa-shirt"></i>
-                        </div>
-                        <div class="font-display font-black text-2xl sm:text-3xl text-white">30 Cargas</div>
-                        <div class="text-xs sm:text-sm font-semibold text-sky-200 mt-0.5">Swipe White 1.2 Kg</div>
-                        <p class="text-xs text-slate-300 mt-1.5">30 sobres de 40g. Lava de 4 a 5 kg de ropa por sobre.</p>
-                    </div>
-
-                    <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 sm:p-5">
-                        <div class="w-10 h-10 rounded-xl bg-emerald-500/30 flex items-center justify-center text-emerald-300 text-lg mb-3">
-                            <i class="fa-brands fa-whatsapp"></i>
-                        </div>
-                        <div class="font-display font-black text-xl sm:text-2xl text-white">Pedido Fácil</div>
-                        <div class="text-xs sm:text-sm font-semibold text-emerald-200 mt-0.5">Atención Inmediata</div>
-                        <p class="text-xs text-slate-300 mt-1.5">Elige un producto o arma tu paquete y envíalo en 1 clic.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- INTRODUCCIÓN -->
+    <section class="max-w-5xl mx-auto px-4 py-8 text-center">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-800 mb-3">Limpieza que cuida tu hogar y tu bolsillo</h2>
+        <p class="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto">Nuestros productos son súper concentrados. Les agregas agua en casa y rinden decenas de litros. <strong>Pide un producto directo, o arma tu lista para enviar un solo mensaje.</strong></p>
     </section>
 
-    <!-- HOW TO ORDER STEPS BANNER -->
-    <section class="bg-white border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
-                <div class="flex items-center gap-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
-                    <span class="w-7 h-7 rounded-full bg-blue-700 text-white font-bold flex items-center justify-center shrink-0">1</span>
-                    <p class="text-slate-600"><strong class="text-slate-900">Explora el catálogo:</strong> Revisa los precios oficiales, usos y el rendimiento por dilución de cada producto.</p>
-                </div>
-                <div class="flex items-center gap-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
-                    <span class="w-7 h-7 rounded-full bg-blue-700 text-white font-bold flex items-center justify-center shrink-0">2</span>
-                    <p class="text-slate-600"><strong class="text-slate-900">Pide en 1 clic:</strong> Presiona <span class="text-emerald-700 font-semibold">"Pedir por WhatsApp"</span> en el producto que quieras para abrir el chat con el mensaje listo.</p>
-                </div>
-                <div class="flex items-center gap-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
-                    <span class="w-7 h-7 rounded-full bg-blue-700 text-white font-bold flex items-center justify-center shrink-0">3</span>
-                    <p class="text-slate-600"><strong class="text-slate-900">¿Quieres varios productos?</strong> Usa el botón <span class="text-slate-900 font-semibold">"+ Agregar"</span> para armar tu lista y enviar un solo pedido completo.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- MAIN CATALOG SECTION -->
-    <main id="catalogo" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
-            <div>
-                <h2 id="currentCategoryTitle" class="font-display font-black text-2xl sm:text-3xl text-slate-900 tracking-tight">
-                    Todos los Productos SWIPE
-                </h2>
-                <p id="productCountSub" class="text-sm text-slate-500 mt-1">
-                    Mostrando los 15 productos seleccionados con precios oficiales en MXN y guía de dilución
-                </p>
-            </div>
-            <div class="flex items-center gap-2">
-                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Vista:</span>
-                <button onclick="setGridView('grid')" id="viewGridBtn" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white flex items-center gap-1.5">
-                    <i class="fa-solid fa-grip"></i> Tarjetas
-                </button>
-                <button onclick="setGridView('list')" id="viewListBtn" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 flex items-center gap-1.5">
-                    <i class="fa-solid fa-list"></i> Detallada Horizontal
-                </button>
-            </div>
-        </div>
-
-        <div id="productsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Populated by JavaScript -->
-        </div>
-
-        <div id="emptySearchState" class="hidden bg-white rounded-3xl border border-slate-200 p-12 text-center max-w-lg mx-auto my-8">
-            <div class="w-16 h-16 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center text-2xl mx-auto mb-4">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-            <h3 class="font-display font-bold text-lg text-slate-900">No encontramos ese producto</h3>
-            <p class="text-sm text-slate-500 mt-1 mb-5">Intenta buscar con otra palabra como "sarro", "grasa", "pisos", "ropa", "brite" o "magic".</p>
-            <button onclick="resetFilters()" class="px-5 py-2.5 rounded-xl bg-blue-700 text-white text-sm font-bold hover:bg-blue-800 transition-colors">
-                Ver todos los productos
-            </button>
+    <!-- CATÁLOGO -->
+    <main class="max-w-5xl mx-auto px-4 pb-12">
+        <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <!-- Inyectado por JS -->
         </div>
     </main>
 
-    <!-- INTERACTIVE DILUTION & SAVINGS CALCULATOR -->
-    <section id="calculadora" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-                <div class="lg:col-span-5 space-y-4">
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-yellow-400/20 text-yellow-300 text-xs font-bold uppercase tracking-wider">
-                        <i class="fa-solid fa-bolt"></i> Comprueba el Ahorro Real
-                    </span>
-                    <h2 class="font-display font-black text-2xl sm:text-3xl leading-tight">
-                        Calculadora Interactiva de Rendimiento SWIPE
-                    </h2>
-                    <p class="text-slate-300 text-sm leading-relaxed">
-                        A diferencia de los limpiadores comerciales que son 90% agua, los concentrados <strong>SWIPE</strong> se diluyen en casa. Selecciona un producto y descubre cuántas botellas o cubetas obtienes y cuánto te cuesta realmente cada aplicación.
-                    </p>
-                    <div class="pt-2 space-y-3">
-                        <label class="block text-xs font-bold uppercase tracking-wider text-blue-200">1. Selecciona el Producto Concentrado:</label>
-                        <select id="calcProductSelect" onchange="updateCalculator()" class="w-full px-4 py-3 rounded-xl bg-white text-slate-900 font-bold text-sm focus:outline-none focus:ring-4 focus:ring-yellow-400/40">
-                            <option value="swipe1l_liviana">SWIPE 1L ($191) — Solución Liviana 1:100 (Vidrios y Espejos)</option>
-                            <option value="swipe1l_normal" selected>SWIPE 1L ($191) — Solución Normal 1:12 (Multiusos / Manchas)</option>
-                            <option value="swipe1l_pesada">SWIPE 1L ($191) — Solución Pesada 1:4 (Grasa Pesada / Motores)</option>
-                            <option value="swipe35l_normal">SWIPE 3.5L ($573) — Solución Normal 1:12 (Máximo Ahorro)</option>
-                            <option value="swipol1l_normal">SWIPOL 1L ($198) — Uso Normal Desinfección 1:20 (Pistola ½ L)</option>
-                            <option value="swipol1l_trapear">SWIPOL 1L ($198) — Para Trapear 1:120 (Cubeta 10L)</option>
-                            <option value="magic35l">MAGIC Pisos 3.5L ($354) — Uso en Cubeta (1L rinde 125L)</option>
-                            <option value="white12kg">SWIPE WHITE 1.2 Kg ($309) — Detergente Lavandería (30 sobres)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4" id="calcResultsContainer">
-                    <!-- Dynamic via JS -->
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FLOATING BOTTOM BAR FOR MULTI-PRODUCT ORDER -->
+    <!-- BARRA FLOTANTE INFERIOR (Cuando hay productos en lista) -->
     <div id="floatingOrderBar" class="fixed bottom-4 inset-x-4 max-w-3xl mx-auto z-30 hidden">
-        <div class="bg-slate-900/95 backdrop-blur-md text-white p-3.5 sm:px-6 sm:py-4 rounded-2xl shadow-2xl border border-white/15 flex items-center justify-between gap-4">
+        <div class="bg-white/95 backdrop-blur-md text-slate-900 p-4 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)] border border-slate-200 flex items-center justify-between gap-4">
             <div class="flex items-center gap-3">
-                <div class="w-11 h-11 rounded-xl bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-400 font-display font-black text-lg" id="floatingBarCount">
+                <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 font-bold text-xl" id="floatingBarCount">
                     0
                 </div>
                 <div>
-                    <p class="text-xs text-slate-300 font-medium">Productos en tu lista de pedido</p>
-                    <p class="font-display font-black text-lg sm:text-xl text-yellow-400" id="floatingBarTotal">$0.00 MXN</p>
+                    <p class="text-xs text-slate-500 font-medium uppercase tracking-wider">Tu Pedido</p>
+                    <p class="font-bold text-lg sm:text-xl text-slate-900" id="floatingBarTotal">$0.00 MXN</p>
                 </div>
             </div>
-            <div class="flex items-center gap-2">
-                <button onclick="toggleCartDrawer(true)" class="px-3.5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs sm:text-sm font-semibold transition-colors">
-                    Ver Lista
-                </button>
-                <button onclick="sendCartToWhatsApp()" class="px-4 sm:px-5 py-2.5 rounded-xl bg-swipe-whatsapp hover:bg-emerald-500 text-slate-950 font-display font-extrabold text-xs sm:text-sm flex items-center gap-2 shadow-lg transition-all">
-                    <i class="fa-brands fa-whatsapp text-lg"></i>
-                    <span>Enviar Pedido</span>
-                </button>
-            </div>
+            <button onclick="toggleCartDrawer(true)" class="px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition-colors flex items-center gap-2">
+                <span>Ver Lista</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
         </div>
     </div>
 
-    <!-- PRODUCT DILUTION & DETAILS MODAL -->
-    <div id="productModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm">
-        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 animate-fadeIn" id="productModalContent">
-            <!-- Populated dynamically -->
-        </div>
-    </div>
-
-    <!-- SHOPPING CART / ORDER BUILDER DRAWER -->
-    <div id="cartDrawerBackdrop" class="fixed inset-0 z-50 hidden bg-slate-950/60 backdrop-blur-sm transition-opacity" onclick="toggleCartDrawer(false)"></div>
-    <aside id="cartDrawer" class="fixed top-0 right-0 z-50 h-full w-full max-w-md bg-white shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
-        <div class="p-5 bg-slate-900 text-white flex items-center justify-between">
+    <!-- MENÚ LATERAL: MI LISTA DE PEDIDO (CARRITO) -->
+    <div id="cartDrawerBackdrop" class="fixed inset-0 z-50 hidden bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="toggleCartDrawer(false)"></div>
+    <aside id="cartDrawer" class="fixed top-0 right-0 z-50 h-full w-full max-w-md bg-white shadow-2xl drawer-closed transition-transform duration-300 flex flex-col">
+        
+        <!-- Cabecera del carrito -->
+        <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-white">
             <div class="flex items-center gap-3">
-                <i class="fa-brands fa-whatsapp text-2xl text-emerald-400"></i>
+                <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
+                    <i class="fa-solid fa-cart-shopping text-lg"></i>
+                </div>
                 <div>
-                    <h3 class="font-display font-bold text-lg">Mi Lista de Pedido</h3>
-                    <p class="text-xs text-slate-300">Envía varios productos en un solo mensaje</p>
+                    <h3 class="font-bold text-lg text-slate-900 leading-tight">Mi Lista</h3>
+                    <p class="text-xs text-slate-500">Revisa lo que vas a pedir</p>
                 </div>
             </div>
-            <button onclick="toggleCartDrawer(false)" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-white">
+            <button onclick="toggleCartDrawer(false)" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 transition-colors">
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
 
-        <div id="cartItemsList" class="flex-1 overflow-y-auto p-5 space-y-3">
-            <!-- Populated by JS -->
+        <!-- Lista de Productos Agregados -->
+        <div id="cartItemsList" class="flex-1 overflow-y-auto p-5 space-y-4 bg-slate-50">
+            <!-- JS inyecta los items -->
         </div>
 
-        <div class="p-5 bg-slate-50 border-t border-slate-200 space-y-4">
-            <div class="flex items-center justify-between">
-                <span class="text-sm font-semibold text-slate-600">Total Estimado:</span>
-                <span id="cartDrawerTotal" class="font-display font-black text-2xl text-slate-900">$0.00 MXN</span>
+        <!-- Resumen y Enviar -->
+        <div class="p-5 bg-white border-t border-slate-100 shadow-[0_-10px_20px_-10px_rgba(0,0,0,0.05)]">
+            <div class="flex items-end justify-between mb-4">
+                <span class="text-sm font-semibold text-slate-500 uppercase tracking-wider">Total:</span>
+                <span id="cartDrawerTotal" class="font-black text-2xl text-slate-900">$0.00 MXN</span>
             </div>
-            <div>
-                <label class="block text-xs font-semibold text-slate-500 mb-1">Nota opcional o nombre para tu entrega:</label>
-                <input type="text" id="customerOrderNote" placeholder="Ej. Hola, soy María, ¿tienes entrega hoy?" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-blue-600">
+            <div class="mb-4">
+                <label class="block text-xs font-semibold text-slate-500 mb-1.5 ml-1">Tu nombre o instrucciones (opcional):</label>
+                <input type="text" id="customerOrderNote" placeholder="Ej. Hola, soy María de Tijuana..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm focus:outline-none focus:border-emerald-500 focus:bg-white transition-colors">
             </div>
-            <button onclick="sendCartToWhatsApp()" class="w-full py-3.5 px-5 rounded-2xl bg-swipe-whatsapp hover:bg-emerald-500 text-slate-950 font-display font-black text-base shadow-lg flex items-center justify-center gap-2 transition-all">
+            <button onclick="sendCartToWhatsApp()" class="w-full py-4 rounded-xl bg-swipe-whatsapp hover:bg-emerald-500 text-white font-bold text-[15px] shadow-lg flex items-center justify-center gap-2 transition-all">
                 <i class="fa-brands fa-whatsapp text-xl"></i>
-                <span>Enviar Pedido por WhatsApp</span>
+                <span>Enviar mi pedido por WhatsApp</span>
             </button>
-            <button onclick="clearCart()" class="w-full py-2 text-xs font-semibold text-slate-400 hover:text-red-600 transition-colors">
-                Vaciar lista de pedido
+            
+            <!-- Botón Vaciar Carrito Ultra Visible -->
+            <button onclick="clearCart()" class="w-full mt-4 py-2.5 text-sm font-bold text-red-500 hover:bg-red-50 hover:text-red-600 rounded-xl transition-colors flex items-center justify-center gap-2 border border-transparent hover:border-red-100">
+                <i class="fa-solid fa-trash-can"></i>
+                Vaciar toda la lista
             </button>
         </div>
     </aside>
 
-    <!-- FOOTER -->
-    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-blue-700 flex items-center justify-center text-yellow-400 font-display font-black">SW</div>
-                <div>
-                    <p class="text-white font-display font-bold text-base">Catálogo Digital de Productos SWIPE</p>
-                    <p class="text-xs text-slate-400">Soluciones Biodegradables de Alto Rendimiento para el Hogar</p>
-                </div>
-            </div>
-            <div class="flex flex-wrap items-center gap-3">
-                <button onclick="sendDirectGeneralWhatsApp()" class="px-5 py-2.5 rounded-xl bg-swipe-whatsapp hover:bg-emerald-500 text-slate-950 font-bold text-xs sm:text-sm flex items-center gap-2 transition-colors">
-                    <i class="fa-brands fa-whatsapp text-base"></i>
-                    <span>¿Dudas? Escríbenos por WhatsApp</span>
-                </button>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- JAVASCRIPT -->
     <script>
-        // ==========================================
-        // 1. CONFIGURACIÓN & DATOS DE LOS 15 PRODUCTOS
-        // ==========================================
         const WHATSAPP_PHONE = '526633285583';
         let currentCategory = 'Todos';
-        let currentViewMode = 'grid'; // 'grid' | 'list'
-        let searchQuery = '';
-        let cart = {}; // { productId: quantity }
+        let cart = {};
 
+        // Base de Datos con Rendimientos Super Detallados
         const PRODUCTS = [
-            // =========================================================================
-            // PRODUCTO 1: SWIPE LÍQUIDO 1L
-            // =========================================================================
             {
                 id: 'swipe-1l',
                 name: 'SWIPE Líquido 1L',
                 price: 191.00,
                 category: 'Limpieza General',
-                badge: 'Más Vendido • Rinde hasta 200 botellas',
-                badgeColor: 'bg-blue-600 text-white',
-
-                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: SWIPE LÍQUIDO 1L 👇👇👇 */
-                imgUrl: '/img/swipe-1.jpg',
-                /* 👆👆👆 =============================================================== 👆👆👆 */
-
-                shortDesc: 'Limpiador líquido multiusos súper concentrado y biodegradable. Indispensable en cocina, lavandería, baño, automóvil y toda la casa.',
-                whatsappText: 'Hola, quiero pedir SWIPE Líquido de 1L ($191.00 MXN).',
-                yieldHighlight: 'Rinde 200 pistolas Livianas, 25 Normales o 10 Pesadas de ½ Litro',
+                badge: 'Más Vendido',
+                imgUrl: 'img/swipe-1.jpg',
+                shortDesc: 'Limpiador líquido multiusos súper concentrado. Indispensable en toda la casa.',
+                whatsappText: 'Hola, quiero pedir 1 SWIPE Líquido de 1L ($191.00 MXN).',
+                yieldHighlight: '<strong>¡Rinde hasta 200 botellas!</strong><br><span class="text-sky-700 text-[12px] mt-0.5 block">Costo real: $0.95 MXN por cada botella de ½ litro preparada (solución liviana).</span>',
                 dilutions: [
-                    {
-                        title: 'Solución Liviana (1:100)',
-                        ratio: '5 ml de SWIPE en ½ litro de agua',
-                        yieldText: 'Rinde 200 botellas de ½ L',
-                        use: 'Para vidrios, espejos, cristalería, pantallas y mugre ligera en general.'
-                    },
-                    {
-                        title: 'Solución Normal (1:12)',
-                        ratio: '40 ml de SWIPE en ½ litro de agua',
-                        yieldText: 'Rinde 25 botellas de ½ L',
-                        use: 'Para todo tipo de superficies, tapicerías, alfombras y telas lavables de colores firmes. Quita manchas de chocolate, fruta, crayón de cera, grasa, lápiz, sangre y zacate. Limpia muebles de madera, línea blanca, acrílicos, cromados, joyería, abanicos, persianas y pisos.'
-                    },
-                    {
-                        title: 'Solución Pesada (1:4)',
-                        ratio: '100 ml de SWIPE en ½ litro de agua',
-                        yieldText: 'Rinde 10 botellas de ½ L',
-                        use: 'Para remover grasas espesas, levantar cera de pisos y quitar manchas difíciles en asadores, parrillas, campanas de cocina, chimeneas, estufas, extractores y motores. (Si la superficie está tibia trabaja aún mejor).'
-                    }
+                    { ratio: 'Liviana (1:100)', use: '5ml en ½ litro de agua. Para vidrios y espejos.' },
+                    { ratio: 'Normal (1:12)', use: '40ml en ½ litro de agua. Para muebles, telas, manchas y limpieza diaria.' },
+                    { ratio: 'Pesada (1:4)', use: '100ml en ½ litro de agua. Para grasa pesada, estufas y motores.' }
                 ]
             },
-
-            // =========================================================================
-            // PRODUCTO 2: SWIPE LÍQUIDO 3.5L
-            // =========================================================================
             {
                 id: 'swipe-35l',
                 name: 'SWIPE Líquido 3.5L',
                 price: 573.00,
                 category: 'Limpieza General',
-                badge: 'Máximo Ahorro Familiar',
-                badgeColor: 'bg-indigo-700 text-white',
-
-                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: SWIPE LÍQUIDO 3.5L 👇👇👇 */
-                imgUrl: '/img/swipe-3.5.jpg',
-                /* 👆👆👆 ================================================================= 👆👆👆 */
-
-                shortDesc: 'El poder multiusos de SWIPE en garrafa económica de 3.5 Litros. Ideal para abastecer tu hogar por meses con el menor costo por litro.',
-                whatsappText: 'Hola, quiero pedir SWIPE Líquido de 3.5L ($573.00 MXN).',
-                yieldHighlight: 'Rinde hasta 700 pistolas Livianas o 87 pistolas Normales de ½ Litro',
+                badge: 'Máximo Ahorro',
+                imgUrl: 'img/swipe-3.5.jpg',
+                shortDesc: 'El poder multiusos de SWIPE en garrafa económica. Abastece tu hogar por meses.',
+                whatsappText: 'Hola, quiero pedir 1 SWIPE Líquido de 3.5L ($573.00 MXN).',
+                yieldHighlight: '<strong>¡Rinde hasta 700 botellas!</strong><br><span class="text-sky-700 text-[12px] mt-0.5 block">Costo real: $0.81 MXN por cada botella de ½ litro preparada (solución liviana).</span>',
                 dilutions: [
-                    {
-                        title: 'Solución Liviana (1:100)',
-                        ratio: '5 ml de SWIPE en ½ litro de agua',
-                        yieldText: 'Rinde 700 botellas de ½ L',
-                        use: 'Para vidrios, espejos, cristalería y mugre ligera en general.'
-                    },
-                    {
-                        title: 'Solución Normal (1:12)',
-                        ratio: '40 ml de SWIPE en ½ litro de agua',
-                        yieldText: 'Rinde 87.5 botellas de ½ L',
-                        use: 'Indispensable en cocina, lavandería, baño y automóvil. Desmancha tapicerías, alfombras, ropa y limpia muebles de madera, línea blanca, persianas, puertas y ventanas.'
-                    },
-                    {
-                        title: 'Solución Pesada (1:4)',
-                        ratio: '100 ml de SWIPE en ½ litro de agua',
-                        yieldText: 'Rinde 35 botellas de ½ L',
-                        use: 'Para remover grasas espesas, asadores, parrillas, campanas de cocina, estufas, extractores y motores.'
-                    }
+                    { ratio: 'Liviana (1:100)', use: '5ml en ½ litro de agua. Para vidrios y espejos.' },
+                    { ratio: 'Normal (1:12)', use: '40ml en ½ litro de agua. Para muebles, telas, manchas y limpieza diaria.' },
+                    { ratio: 'Pesada (1:4)', use: '100ml en ½ litro de agua. Para grasa pesada, estufas y motores.' }
                 ]
             },
-
-            // =========================================================================
-            // PRODUCTO 3: SWIPOL 1L
-            // =========================================================================
             {
                 id: 'swipol-1l',
                 name: 'SWIPOL 1L',
                 price: 198.00,
                 category: 'Limpieza General',
-                badge: 'Desinfectante 4ta Generación',
-                badgeColor: 'bg-emerald-600 text-white',
-
-                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: SWIPOL 1L 👇👇👇 */
-                imgUrl: '/img/swipol.jpg',
-                /* 👆👆👆 ======================================================== 👆👆👆 */
-
-                shortDesc: 'Desinfectante concentrado biodegradable de cuarta generación, no carcinogénico y de tecnología avanzada. Elimina virus, bacterias y hongos en 30 segundos.',
-                whatsappText: 'Hola, quiero pedir el desinfectante SWIPOL de 1L ($198.00 MXN).',
-                yieldHighlight: 'Rinde 40 botellas rociadoras de ½ L o 120 Litros para trapear',
+                badge: 'Desinfectante',
+                imgUrl: 'img/swipol.jpg',
+                shortDesc: 'Desinfectante avanzado que elimina virus y bacterias en 30 segundos.',
+                whatsappText: 'Hola, quiero pedir 1 Desinfectante SWIPOL de 1L ($198.00 MXN).',
+                yieldHighlight: '<strong>Rinde 40 pistolas desinfectantes</strong><br><span class="text-sky-700 text-[12px] mt-0.5 block">Costo real: $4.95 MXN por cada botella rociadora preparada, o $16.50 por cubeta de 10L.</span>',
                 dilutions: [
-                    {
-                        title: 'Uso Normal en Rociador (1:20)',
-                        ratio: '25 ml de SWIPOL en ½ litro de agua',
-                        yieldText: 'Rinde 40 botellas de ½ L',
-                        use: 'Rocía sobre la superficie u objetos que desees desinfectar y deja actuar durante 30 segundos. (Solo requiere enjuague si la superficie está en contacto directo con alimentos).'
-                    },
-                    {
-                        title: 'Para Trapear y Desinfectar Pisos (1:120)',
-                        ratio: '83.3 ml de SWIPOL en cubeta con 10 L de agua',
-                        yieldText: 'Rinde 12 cubetas de 10L (120 L)',
-                        use: 'Desinfección profunda de pisos y superficies amplias del hogar o negocio.'
-                    }
+                    { ratio: 'Uso en Rociador (1:20)', use: '25 ml en ½ litro de agua. Rocía y deja actuar 30 segundos.' },
+                    { ratio: 'Para Trapear (1:120)', use: '83.3 ml en cubeta con 10 L de agua.' }
                 ]
             },
-
-            // =========================================================================
-            // PRODUCTO 4: PISTOLA SWIPE
-            // =========================================================================
             {
                 id: 'pistola-swipe',
-                name: 'Pistola SWIPE',
+                name: 'Pistola Rociadora SWIPE',
                 price: 65.00,
                 category: 'Limpieza General',
-                badge: 'Accesorio Indispensable',
-                badgeColor: 'bg-amber-500 text-slate-950',
-
-                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: PISTOLA SWIPE 👇👇👇 */
-                imgUrl: '/img/spray-swipe.jpg',
-                /* 👆👆👆 ============================================================ 👆👆👆 */
-
-                shortDesc: 'Botella rociadora oficial de ½ litro de uso rudo con gatillo regulable. Graduada para preparar tus soluciones Liviana, Normal y Pesada sin desperdicios.',
-                whatsappText: 'Hola, quiero pedir la Pistola Rociadora SWIPE ($65.00 MXN).',
-                yieldHighlight: 'Capacidad de 500 ml con marcas de medición exacta',
+                badge: 'Accesorio',
+                imgUrl: 'img/spray-swipe.jpg',
+                shortDesc: 'Botella oficial de uso rudo. Viene con marcas para preparar tus mezclas fácilmente.',
+                whatsappText: 'Hola, quiero pedir 1 Pistola Rociadora SWIPE ($65.00 MXN).',
+                yieldHighlight: '<strong>Accesorio de larga duración</strong><br><span class="text-sky-700 text-[12px] mt-0.5 block">Capacidad de ½ Litro con marcas de medición exacta para no desperdiciar producto.</span>',
                 dilutions: [
-                    {
-                        title: 'Medición Exacta y Uso Rudo',
-                        ratio: 'Capacidad de 500 ml (½ Litro)',
-                        yieldText: 'Gatillo ajustable (rocío o chorro)',
-                        use: 'Diseñada con plástico resistente para durar años y preparar fácilmente tus diluciones 1:100, 1:12 o 1:4 de forma segura.'
-                    }
+                    { ratio: 'Uso Rudo', use: 'Diseñada para durar años. Solo llénala de agua hasta la marca y agrega el producto.' }
                 ]
             },
-
-            // =========================================================================
-            // PRODUCTO 5: BRITE 1L
-            // =========================================================================
             {
                 id: 'brite-1l',
                 name: 'BRITE 1L',
                 price: 181.00,
                 category: 'Baños',
-                badge: 'Adiós al Sarro • 100% Activo',
-                badgeColor: 'bg-teal-600 text-white',
-
-                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: BRITE 1L 👇👇👇 */
-                imgUrl: '/img/brite-1.jpg',
-                /* 👆👆👆 ======================================================= 👆👆👆 */
-
-                shortDesc: 'Limpiador ácido concentrado que limpia, desinfecta y desodoriza. Quita el sarro calcáreo en inodoros, azulejos y porcelana de acción rápida.',
-                whatsappText: 'Hola, quiero pedir BRITE Líquido de 1L ($181.00 MXN).',
-                yieldHighlight: 'Fórmula 100% activa e inofensiva para tuberías y fosas sépticas',
+                badge: 'Quita Sarro',
+                imgUrl: 'img/brite-1.jpg',
+                shortDesc: 'Limpiador ácido concentrado. Quita el sarro calcáreo en inodoros y azulejos.',
+                whatsappText: 'Hola, quiero pedir 1 BRITE Líquido de 1L ($181.00 MXN).',
+                yieldHighlight: '<strong>Fórmula 100% activa</strong><br><span class="text-sky-700 text-[12px] mt-0.5 block">Acción rápida y concentrada. Inofensiva para tuberías y fosas sépticas.</span>',
                 dilutions: [
-                    {
-                        title: 'Aplicación en Tazas de Baño y Porcelana',
-                        ratio: '100% Activo y Soluble en Agua',
-                        yieldText: 'Uso diario o correctivo',
-                        use: 'Elimina el sarro formado por residuos calcáreos del agua. Produce poca espuma, no es flamable, es seguro para cualquier color de porcelana e inofensivo para tuberías y fosas sépticas.'
-                    }
+                    { ratio: 'Uso Directo', use: 'Aplica directamente en el inodoro o áreas con sarro. Seguro para porcelana.' }
                 ]
             },
-
-            // =========================================================================
-            // PRODUCTO 6: BRITE 3.5L
-            // =========================================================================
             {
                 id: 'brite-35l',
                 name: 'BRITE 3.5L',
                 price: 543.00,
                 category: 'Baños',
-                badge: 'Garrafa Ahorradora Baños',
-                badgeColor: 'bg-teal-700 text-white',
-
-                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: BRITE 3.5L 👇👇👇 */
-                imgUrl: '/img/brite-3.5l.jpg',
-                /* 👆👆👆 ========================================================= 👆👆👆 */
-
-                shortDesc: 'Presentación de 3.5 Litros del limpiador ácido concentrado que limpia, desinfecta y desodoriza eliminando el sarro más difícil en baños.',
-                whatsappText: 'Hola, quiero pedir BRITE Líquido de 3.5L ($543.00 MXN).',
-                yieldHighlight: '3.5 Litros de poder desensarrante y desinfectante 100% activo',
+                badge: 'Garrafa Ahorro',
+                imgUrl: 'img/brite-3.5l.jpg',
+                shortDesc: 'Limpiador desensarrante en tamaño grande. Ideal para casas con mucho sarro.',
+                whatsappText: 'Hola, quiero pedir 1 BRITE Líquido de 3.5L ($543.00 MXN).',
+                yieldHighlight: '<strong>3.5 Litros de alto poder</strong><br><span class="text-sky-700 text-[12px] mt-0.5 block">Formato económico para abastecer hogares con varios baños o agua muy dura.</span>',
                 dilutions: [
-                    {
-                        title: 'Mantenimiento Total de Baños',
-                        ratio: '100% Activo • Acción Rápida',
-                        yieldText: 'Rinde meses de limpieza profunda',
-                        use: 'Ideal para hogares con varios baños o aguas duras con mucho sarro. Seguro para cualquier color de porcelana, tuberías y fosas sépticas.'
-                    }
+                    { ratio: 'Uso Directo', use: 'Aplicación directa. Inofensivo para fosas sépticas.' }
                 ]
             },
-
-            // =========================================================================
-            // PRODUCTO 7: BRITE GEL 1L
-            // =========================================================================
             {
                 id: 'brite-gel-1l',
                 name: 'BRITE GEL 1L',
                 price: 192.00,
                 category: 'Baños',
-                badge: 'Mayor Adherencia en Gel',
-                badgeColor: 'bg-emerald-700 text-white',
-
-                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: BRITE GEL 1L 👇👇👇 */
-                imgUrl: '/img/brite-gel-1.jpg',
-                /* 👆👆👆 =========================================================== 👆👆👆 */
-
-                shortDesc: 'Versión en gel más concentrada y con mayor poder desinfectante. Se adhiere a las paredes del inodoro y regadera disminuyendo el desperdicio.',
-                whatsappText: 'Hola, quiero pedir BRITE GEL de 1L ($192.00 MXN).',
-                yieldHighlight: 'Consistencia en gel que no es escurre y actúa por más tiempo',
+                badge: 'Mayor Adherencia',
+                imgUrl: 'img/brite-gel-1.jpg',
+                shortDesc: 'Versión en gel que se adhiere a las paredes de la regadera y tazas para no desperdiciar.',
+                whatsappText: 'Hola, quiero pedir 1 BRITE GEL de 1L ($192.00 MXN).',
+                yieldHighlight: '<strong>Cero desperdicios</strong><br><span class="text-sky-700 text-[12px] mt-0.5 block">Al ser en gel no escurre de inmediato, actuando sobre el sarro por más tiempo.</span>',
                 dilutions: [
-                    {
-                        title: 'Acción Concentrada en Superficies Verticales',
-                        ratio: 'Aplicación directa con Aplicador Brite',
-                        yieldText: 'Cero desperdicio de producto',
-                        use: 'Su consistencia en gel facilita la aplicación en tazas de inodoro, azulejos y canceles. 100% activo, baja espuma, seguro para porcelana, tuberías y fosas sépticas.'
-                    }
+                    { ratio: 'Uso con Aplicador', use: 'Utiliza el hisopo Brite para extender el gel en las paredes sin ensuciarte.' }
                 ]
             },
-
-            // =========================================================================
-            // PRODUCTO 8: APLICADOR BRITE
-            // =========================================================================
             {
                 id: 'aplicador-brite',
                 name: 'Aplicador BRITE',
                 price: 59.00,
                 category: 'Baños',
-                badge: 'Complemento Ideal',
-                badgeColor: 'bg-teal-100 text-teal-900',
-
-                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: APLICADOR BRITE 👇👇👇 */
-                imgUrl: '/img/aplicador-brite.jpg',
-                /* 👆👆👆 ============================================================== 👆👆👆 */
-
-                shortDesc: 'Hisopo aplicador ergonómico con borla suave que no raya la porcelana. Permite distribuir Brite y Brite Gel uniformemente sin ensuciarte las manos.',
-                whatsappText: 'Hola, quiero pedir el Aplicador BRITE ($59.00 MXN).',
-                yieldHighlight: 'Fibras suaves lavables que aprovechan cada gota de Brite',
+                badge: 'Accesorio',
+                imgUrl: 'img/aplicador-brite.jpg',
+                shortDesc: 'Hisopo ergonómico con punta suave para extender el Brite sin rayar la porcelana.',
+                whatsappText: 'Hola, quiero pedir 1 Aplicador BRITE ($59.00 MXN).',
+                yieldHighlight: '<strong>Accesorio de limpieza</strong><br><span class="text-sky-700 text-[12px] mt-0.5 block">Fibras suaves, lavables y duraderas que evitan que tengas contacto con el limpiador.</span>',
                 dilutions: [
-                    {
-                        title: 'Aplicación Segura y Uniforme',
-                        ratio: 'Uso directo con Brite Líquido o Brite Gel',
-                        yieldText: 'Alta durabilidad',
-                        use: 'Humedece la borla con unas gotas de Brite y frota suavemente la superficie con sarro.'
-                    }
+                    { ratio: 'Uso Manual', use: 'Humedece la borla con unas gotas de Brite y frota el sarro.' }
                 ]
             },
-
-            // =========================================================================
-            // PRODUCTO 9: MAGIC OCEAN BREEZE 3.5L
-            // =========================================================================
             {
                 id: 'magic-ocean',
                 name: 'MAGIC Ocean Breeze 3.5L',
                 price: 354.00,
                 category: 'Pisos',
-                badge: '1L Rinde 125 Litros',
-                badgeColor: 'bg-sky-600 text-white',
-
-                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: MAGIC OCEAN BREEZE 3.5L 👇👇👇 */
-                imgUrl: '/img/magic-ocean.jpg',
-                /* 👆👆👆 ====================================================================== 👆👆👆 */
-
-                shortDesc: 'Limpiador, aromatizante y desinfectante concentrado para pisos con fresco aroma a brisa marina que perdura por horas.',
-                whatsappText: 'Hola, quiero pedir MAGIC Ocean Breeze de 3.5L ($354.00 MXN).',
-                yieldHighlight: '1 Litro rinde 125 Litros • ¡La garrafa rinde hasta 437.5 Litros!',
+                badge: 'Aroma Brisa Marina',
+                imgUrl: 'img/magic-ocean.jpg',
+                shortDesc: 'Limpiador para pisos con aroma fresco a mar. Limpia, desinfecta y no deja pegajoso.',
+                whatsappText: 'Hola, quiero pedir 1 MAGIC Ocean Breeze de 3.5L ($354.00 MXN).',
+                yieldHighlight: '<strong>¡Rinde 437 Litros en total!</strong><br><span class="text-sky-700 text-[12px] mt-0.5 block">Costo real: $0.81 MXN por cada litro preparado. Hasta 58 cubetas llenas para trapear.</span>',
                 dilutions: [
-                    {
-                        title: 'Dilución en Cubeta para Trapear',
-                        ratio: '60 a 80 ml en una cubeta con 10 Litros de agua',
-                        yieldText: 'Rinde hasta 58 cubetas de 10L',
-                        use: 'Disuelve en la cubeta y procede a trapear normalmente. Limpia, desinfecta y aromatiza sin dejar residuos pegajosos.'
-                    },
-                    {
-                        title: 'Aplicación Directa con Rociador',
-                        ratio: 'Rociar en piso y pasar trapeador húmedo',
-                        yieldText: '1L rinde 125L de solución',
-                        use: 'Ideal para dar un toque rápido de frescura y limpieza diaria en cualquier habitación.'
-                    }
+                    { ratio: 'En Cubeta', use: 'Agrega un chorrito (60-80ml) en una cubeta con 10 Litros de agua y trapea.' },
+                    { ratio: 'En Rociador', use: 'Rocía directo al piso y pasa el trapeador húmedo.' }
                 ]
             },
-
-            // =========================================================================
-            // PRODUCTO 10: MAGIC LEMON LIME 3.5L
-            // =========================================================================
             {
                 id: 'magic-lemon',
                 name: 'MAGIC Lemon Lime 3.5L',
                 price: 354.00,
                 category: 'Pisos',
-                badge: '1L Rinde 125 Litros',
-                badgeColor: 'bg-lime-600 text-white',
-
-                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: MAGIC LEMON LIME 3.5L 👇👇👇 */
-                imgUrl: '/img/magic-lemon.jpg',
-                /* 👆👆👆 ==================================================================== 👆👆👆 */
-
-                shortDesc: 'Limpiador, aromatizante y desinfectante concentrado para pisos con revitalizante aroma cítrico a limón-lima.',
-                whatsappText: 'Hola, quiero pedir MAGIC Lemon Lime de 3.5L ($354.00 MXN).',
-                yieldHighlight: '1 Litro rinde 125 Litros • ¡La garrafa rinde hasta 437.5 Litros!',
+                badge: 'Aroma Cítrico',
+                imgUrl: 'img/magic-lemon.jpg',
+                shortDesc: 'Limpiador desinfectante para pisos con revitalizante aroma a limón y lima.',
+                whatsappText: 'Hola, quiero pedir 1 MAGIC Lemon Lime de 3.5L ($354.00 MXN).',
+                yieldHighlight: '<strong>¡Rinde 437 Litros en total!</strong><br><span class="text-sky-700 text-[12px] mt-0.5 block">Costo real: $0.81 MXN por cada litro preparado. Hasta 58 cubetas llenas para trapear.</span>',
                 dilutions: [
-                    {
-                        title: 'Dilución en Cubeta para Trapear',
-                        ratio: '60 a 80 ml en una cubeta con 10 Litros de agua',
-                        yieldText: 'Rinde hasta 58 cubetas de 10L',
-                        use: 'Corta la suciedad diaria dejando un aroma cítrico limpio y energizante en toda la casa.'
-                    },
-                    {
-                        title: 'Aplicación Directa',
-                        ratio: 'Rociar al piso y trapear con agua',
-                        yieldText: '1L rinde 125L de solución',
-                        use: 'Práctico y económico para todo tipo de pisos lavables.'
-                    }
+                    { ratio: 'En Cubeta', use: 'Agrega un chorrito (60-80ml) en una cubeta con 10 Litros de agua y trapea.' },
+                    { ratio: 'En Rociador', use: 'Rocía directo al piso y pasa el trapeador húmedo.' }
                 ]
             },
-
-            // =========================================================================
-            // PRODUCTO 11: MAGIC LAVENDER 3.5L
-            // =========================================================================
             {
                 id: 'magic-lavender',
                 name: 'MAGIC Lavender 3.5L',
                 price: 354.00,
                 category: 'Pisos',
-                badge: '1L Rinde 125 Litros',
-                badgeColor: 'bg-purple-600 text-white',
-
-                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: MAGIC LAVENDER 3.5L 👇👇👇 */
-                imgUrl: '/img/magic-lav.jpg',
-                /* 👆👆👆 ================================================================== 👆👆👆 */
-
-                shortDesc: 'Limpiador, aromatizante y desinfectante concentrado para pisos con el clásico y relajante aroma a lavanda.',
-                whatsappText: 'Hola, quiero pedir MAGIC Lavender de 3.5L ($354.00 MXN).',
-                yieldHighlight: '1 Litro rinde 125 Litros • ¡La garrafa rinde hasta 437.5 Litros!',
+                badge: 'Aroma Lavanda',
+                imgUrl: 'img/magic-lav.jpg',
+                shortDesc: 'Limpiador desinfectante para pisos con el clásico y relajante aroma a lavanda.',
+                whatsappText: 'Hola, quiero pedir 1 MAGIC Lavender de 3.5L ($354.00 MXN).',
+                yieldHighlight: '<strong>¡Rinde 437 Litros en total!</strong><br><span class="text-sky-700 text-[12px] mt-0.5 block">Costo real: $0.81 MXN por cada litro preparado. Hasta 58 cubetas llenas para trapear.</span>',
                 dilutions: [
-                    {
-                        title: 'Dilución en Cubeta para Trapear',
-                        ratio: '60 a 80 ml en una cubeta con 10 Litros de agua',
-                        yieldText: 'Rinde hasta 58 cubetas de 10L',
-                        use: 'Desinfecta profundamente y deja un ambiente relajante ideal para recámaras y salas.'
-                    },
-                    {
-                        title: 'Aplicación Directa',
-                        ratio: 'Rociar al piso y trapear con agua',
-                        yieldText: '1L rinde 125L de solución',
-                        use: 'Aroma duradero de alta fijación.'
-                    }
+                    { ratio: 'En Cubeta', use: 'Agrega un chorrito (60-80ml) en una cubeta con 10 Litros de agua y trapea.' },
+                    { ratio: 'En Rociador', use: 'Rocía directo al piso y pasa el trapeador húmedo.' }
                 ]
             },
-
-            // =========================================================================
-            // PRODUCTO 12: GREASE QUITACOCHAMBRE 500ML
-            // =========================================================================
             {
                 id: 'grease-500ml',
                 name: 'GREASE Quitacochambre 500ml',
                 price: 166.00,
                 category: 'Cocina',
-                badge: 'Destructor de Cochambre',
-                badgeColor: 'bg-red-600 text-white',
-
-                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: GREASE 500ML 👇👇👇 */
-                imgUrl: '/img/grease.jpg',
-                /* 👆👆👆 =========================================================== 👆👆👆 */
-
-                shortDesc: 'Quitacochambre biodegradable de máxima potencia. Destruye grasa carbonizada y cochambre pegado en campanas, estufas, parrillas y hornos.',
-                whatsappText: 'Hola, quiero pedir el quitacochambre GREASE de 500ml ($166.00 MXN).',
-                yieldHighlight: 'Fórmula concentrada contra grasa quemada e incrustada',
+                badge: 'Destructor de Grasa',
+                imgUrl: 'img/grease.jpg',
+                shortDesc: 'Poderoso quitacochambre. Destruye grasa carbonizada en estufas, campanas y parrillas.',
+                whatsappText: 'Hola, quiero pedir 1 GREASE Quitacochambre de 500ml ($166.00 MXN).',
+                yieldHighlight: '<strong>Máxima Potencia</strong><br><span class="text-sky-700 text-[12px] mt-0.5 block">Fórmula súper concentrada que te ahorra horas de tallar superficies carbonizadas.</span>',
                 dilutions: [
-                    {
-                        title: 'Uso en Estufas, Parrillas y Hornos',
-                        ratio: 'Aplicación localizada sobre grasa incrustada',
-                        yieldText: 'Biodegradable de acción rápida',
-                        use: 'Aplica sobre la superficie (si está ligeramente tibia actúa aún más rápido), deja actuar unos minutos y retira con trapo o esponja húmeda.'
-                    }
+                    { ratio: 'Uso Directo', use: 'Aplica sobre la grasa pegada (actúa mejor si la superficie está tibia), espera unos minutos y limpia.' }
                 ]
             },
-
-            // =========================================================================
-            // PRODUCTO 13: SWIPE WHITE 1.2 KG
-            // =========================================================================
             {
                 id: 'white-12kg',
                 name: 'SWIPE WHITE 1.2 Kg',
                 price: 309.00,
                 category: 'Lavandería',
-                badge: 'Caja con 30 Sobres de 40g',
-                badgeColor: 'bg-sky-500 text-white',
-
-                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: SWIPE WHITE 1.2 KG 👇👇👇 */
-                imgUrl: '/img/white.jpg',
-                /* 👆👆👆 ================================================================= 👆👆👆 */
-
-                shortDesc: 'Detergente concentrado en polvo de baja espuma para ropa blanca y de colores firmes. Con cristales de blancura óptica y agentes antirredepositantes.',
-                whatsappText: 'Hola, quiero pedir el detergente SWIPE WHITE de 1.2 Kg ($309.00 MXN).',
-                yieldHighlight: '1 sobre de 40g lava de 4 a 5 Kg de ropa • Rinde 30 cargas completas',
+                badge: 'Ropa Blanca y Color',
+                imgUrl: 'img/white.jpg',
+                shortDesc: 'Detergente en polvo en sobres individuales. Protege las fibras y revive los colores.',
+                whatsappText: 'Hola, quiero pedir 1 caja de SWIPE WHITE 1.2Kg ($309.00 MXN).',
+                yieldHighlight: '<strong>Rinde 30 lavadoras completas</strong><br><span class="text-sky-700 text-[12px] mt-0.5 block">Costo real: $10.30 MXN por cada carga completa de ropa (4 a 5 Kg).</span>',
                 dilutions: [
-                    {
-                        title: 'Dosificación Exacta en Sobres Individuales',
-                        ratio: '1 sobre de 40 g por carga de 4 a 5 Kg de ropa',
-                        yieldText: 'Caja con 30 sobres (120 a 150 Kg de ropa)',
-                        use: 'Sus agentes antirredepositantes evitan que la mugre disuelta regrese a las telas. Es de baja espuma para proteger tu lavadora y funciona en agua fría o caliente (usa agua caliente en ropa muy sucia para potenciar el desmanchado).'
-                    }
+                    { ratio: '1 Sobre = 1 Lavadora', use: 'Echa un sobrecito de 40g directo a la lavadora por cada 4 a 5 Kg de ropa limpia.' }
                 ]
             },
-
-            // =========================================================================
-            // PRODUCTO 14: SWIPE-A-FLY 500ML
-            // =========================================================================
             {
                 id: 'swipe-a-fly',
                 name: 'SWIPE-A-FLY 500ml',
                 price: 250.00,
                 category: 'Control de Plagas',
-                badge: 'Insecticida Biodegradable',
-                badgeColor: 'bg-amber-600 text-white',
-
-                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: SWIPE-A-FLY 500ML 👇👇👇 */
-                imgUrl: '/img/afly.jpg',
-                /* 👆👆👆 ================================================================ 👆👆👆 */
-
-                shortDesc: 'Insecticida concentrado emulsionable y biodegradable a base de piretrina. Protección eficaz contra plagas voladoras y rastreras en uso doméstico.',
-                whatsappText: 'Hola, quiero pedir el insecticida SWIPE-A-FLY de 500ml ($250.00 MXN).',
-                yieldHighlight: 'Fórmula concentrada emulsionable en agua',
+                badge: 'Insecticida',
+                imgUrl: 'img/afly.jpg',
+                shortDesc: 'Insecticida concentrado biodegradable para el hogar. Efectivo contra moscas, cucarachas y arañas.',
+                whatsappText: 'Hola, quiero pedir 1 Insecticida SWIPE-A-FLY de 500ml ($250.00 MXN).',
+                yieldHighlight: '<strong>Protección prolongada</strong><br><span class="text-sky-700 text-[12px] mt-0.5 block">Se diluye en agua, rindiendo para decenas de aplicaciones protegiendo toda la casa.</span>',
                 dilutions: [
-                    {
-                        title: 'Control de Insectos Voladores y Rastreros',
-                        ratio: 'Diluir en agua según plaga en Pistola Swipe-A-Fly',
-                        yieldText: 'Biodegradable a base de piretrina',
-                        use: 'Eficaz contra moscas, mosquitos, cucarachas, hormigas, arañas y pulgas en el hogar.'
-                    }
+                    { ratio: 'Uso Diluido', use: 'Diluir en la botella rociadora según el nivel de plaga voladora o rastrera.' }
                 ]
             },
-
-            // =========================================================================
-            // PRODUCTO 15: PISTOLA SWIPE-A-FLY
-            // =========================================================================
             {
                 id: 'pistola-fly',
                 name: 'Pistola SWIPE-A-FLY',
                 price: 65.00,
                 category: 'Control de Plagas',
-                badge: 'Aplicador Etiquetado',
-                badgeColor: 'bg-amber-100 text-amber-900',
-
-                /* 👇👇👇 PEGA AQUÍ LA RUTA O URL DE LA IMAGEN DE: PISTOLA SWIPE-A-FLY 👇👇👇 */
-                imgUrl: '/img/spray-aFly.jpg',
-                /* 👆👆👆 ================================================================== 👆👆👆 */
-
-                shortDesc: 'Botella rociadora oficial claramente identificada para preparar y aplicar tus diluciones de insecticida Swipe-A-Fly con total seguridad.',
-                whatsappText: 'Hola, quiero pedir la Pistola Rociadora SWIPE-A-FLY ($65.00 MXN).',
-                yieldHighlight: 'Evita confusiones o contaminación con otros limpiadores',
+                badge: 'Accesorio Seguro',
+                imgUrl: 'img/spray-aFly.jpg',
+                shortDesc: 'Botella rociadora etiquetada específicamente para insecticida, para no confundirla con limpiadores.',
+                whatsappText: 'Hola, quiero pedir 1 Pistola Rociadora SWIPE-A-FLY ($65.00 MXN).',
+                yieldHighlight: '<strong>Seguridad ante todo</strong><br><span class="text-sky-700 text-[12px] mt-0.5 block">Gatillo regulable y diseño exclusivo para evitar contaminar otros limpiadores del hogar.</span>',
                 dilutions: [
-                    {
-                        title: 'Seguridad y Dosificación',
-                        ratio: 'Botella exclusiva para Swipe-A-Fly',
-                        yieldText: 'Gatillo regulable de alta duración',
-                        use: 'Permite preparar la mezcla exacta de insecticida y mantenerla claramente identificada en casa.'
-                    }
+                    { ratio: 'Uso Exclusivo', use: 'Úsala únicamente para preparar y rociar tus mezclas de Swipe-A-Fly.' }
                 ]
             }
         ];
 
-        // ==========================================
-        // 2. RENDERIZADO DE PRODUCTOS
-        // ==========================================
+        // RENDERIZAR PRODUCTOS
         function renderProducts() {
             const grid = document.getElementById('productsGrid');
-            const emptyState = document.getElementById('emptySearchState');
-
-            const filtered = PRODUCTS.filter(p => {
-                const matchesCat = currentCategory === 'Todos' || p.category === currentCategory;
-                const q = searchQuery.toLowerCase().trim();
-                if (!q) return matchesCat;
-                const haystack = `${p.name} ${p.category} ${p.shortDesc} ${p.yieldHighlight} ${p.dilutions.map(d => d.title + ' ' + d.use).join(' ')}`.toLowerCase();
-                return matchesCat && haystack.includes(q);
-            });
-
-            document.getElementById('productCountSub').textContent = `Mostrando ${filtered.length} de ${PRODUCTS.length} productos con precios oficiales en MXN y guía de dilución`;
-
-            if (filtered.length === 0) {
-                grid.innerHTML = '';
-                emptyState.classList.remove('hidden');
-                return;
-            }
-            emptyState.classList.add('hidden');
-
-            if (currentViewMode === 'list') {
-                grid.className = 'space-y-4';
-            } else {
-                grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6';
-            }
+            const filtered = PRODUCTS.filter(p => currentCategory === 'Todos' || p.category === currentCategory);
 
             grid.innerHTML = filtered.map(p => {
-                const imgSource = p.imgUrl;
                 const inCartQty = cart[p.id] || 0;
                 const waUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(p.whatsappText)}`;
-
+                
                 const dilutionsHtml = p.dilutions.map(d => `
-                    <div class="bg-slate-50 rounded-xl p-3 border border-slate-200/80">
-                        <div class="flex flex-wrap items-center justify-between gap-1 mb-1">
-                            <span class="font-bold text-xs text-slate-900">${d.title}</span>
-                            <span class="text-[11px] font-extrabold px-2 py-0.5 rounded-md bg-blue-100 text-blue-900">${d.yieldText}</span>
-                        </div>
-                        <p class="text-xs font-semibold text-blue-700 mb-1"><i class="fa-solid fa-flask mr-1"></i>${d.ratio}</p>
-                        <p class="text-xs text-slate-600 leading-relaxed">${d.use}</p>
+                    <div class="mb-2.5 last:mb-0">
+                        <span class="font-bold text-slate-700 text-[13px]">${d.ratio}</span>
+                        <p class="text-[13px] text-slate-600 leading-snug">${d.use}</p>
                     </div>
                 `).join('');
 
-                if (currentViewMode === 'list') {
-                    // Vista Horizontal Detallada
-                    return `
-                    <article class="bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden card-hover p-5 sm:p-6 flex flex-col md:flex-row gap-6 items-center md:items-start">
-                        <div class="relative w-40 h-48 shrink-0 bg-slate-50 rounded-2xl p-3 flex items-center justify-center border border-slate-100">
-                            <img src="${imgSource}" alt="${p.name}" class="max-h-full max-w-full object-contain">
-                        </div>
-
-                        <div class="flex-1 w-full space-y-3">
-                            <div class="flex flex-wrap items-start justify-between gap-2">
-                                <div>
-                                    <span class="inline-block text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full ${p.badgeColor} mb-1.5">${p.badge}</span>
-                                    <h3 class="font-display font-black text-xl text-slate-900">${p.name}</h3>
-                                </div>
-                                <div class="text-right">
-                                    <span class="font-display font-black text-2xl text-red-600">$${p.price.toFixed(2)} <span class="text-xs font-bold text-slate-500">MXN</span></span>
-                                </div>
-                            </div>
-
-                            <p class="text-sm text-slate-600 leading-relaxed">${p.shortDesc}</p>
-
-                            <div class="bg-amber-50/90 border border-amber-200/80 rounded-xl px-3.5 py-2 flex items-center gap-2 text-xs font-bold text-amber-950">
-                                <i class="fa-solid fa-bolt text-amber-500 text-sm"></i>
-                                <span>${p.yieldHighlight}</span>
-                            </div>
-
-                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 pt-1">
-                                ${dilutionsHtml}
-                            </div>
-
-                            <div class="pt-3 flex flex-wrap items-center gap-3 border-t border-slate-100">
-                                <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="flex-1 min-w-[200px] py-3 px-5 rounded-xl bg-swipe-whatsapp hover:bg-emerald-500 text-slate-950 font-display font-extrabold text-sm shadow-md flex items-center justify-center gap-2 transition-all">
-                                    <i class="fa-brands fa-whatsapp text-lg"></i>
-                                    <span>Pedir "${p.name}" por WhatsApp</span>
-                                </a>
-                                <button onclick="addToCart('${p.id}')" class="py-3 px-4 rounded-xl font-bold text-xs sm:text-sm border ${inCartQty > 0 ? 'bg-slate-900 text-white border-slate-900' : 'bg-slate-100 hover:bg-slate-200 text-slate-800 border-slate-200'} transition-all flex items-center gap-2">
-                                    <i class="fa-solid ${inCartQty > 0 ? 'fa-check text-yellow-400' : 'fa-plus'}"></i>
-                                    <span>${inCartQty > 0 ? `En mi pedido (${inCartQty})` : 'Agregar a lista'}</span>
-                                </button>
-                            </div>
-                        </div>
-                    </article>`;
-                }
-
-                // Vista Tarjetas (Grid)
                 return `
-                <article class="bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden card-hover flex flex-col justify-between">
-                    <div>
-                        <!-- Top Image & Badge Area -->
-                        <div class="relative h-56 bg-gradient-to-b from-slate-50 to-white p-5 flex items-center justify-center border-b border-slate-100">
-                            <span class="absolute top-3.5 right-3.5 z-10 text-[11px] font-extrabold px-3 py-1 rounded-full shadow-sm ${p.badgeColor}">
-                                ${p.badge}
-                            </span>
-                            <img src="${imgSource}" alt="${p.name}" class="max-h-44 max-w-full object-contain transition-transform duration-300 hover:scale-105">
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-shadow border border-slate-100 overflow-hidden flex flex-col">
+                    <!-- Imagen -->
+                    <div class="h-64 bg-slate-50 flex items-center justify-center p-6 relative">
+                        <span class="absolute top-4 left-4 bg-emerald-100 text-emerald-800 text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                            ${p.badge}
+                        </span>
+                        <img src="${p.imgUrl}" alt="${p.name}" class="max-h-full object-contain mix-blend-multiply transition-transform hover:scale-105 duration-300">
+                    </div>
+
+                    <!-- Contenido -->
+                    <div class="p-6 flex flex-col flex-1">
+                        <p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">${p.category}</p>
+                        <h3 class="text-xl font-bold text-slate-900 leading-tight mb-2">${p.name}</h3>
+                        <p class="text-2xl font-black text-slate-800 mb-3">$${p.price.toFixed(2)} <span class="text-sm font-medium text-slate-500">MXN</span></p>
+                        
+                        <p class="text-slate-600 text-[14px] mb-4 leading-relaxed">${p.shortDesc}</p>
+
+                        <!-- Highlight de Rendimiento (Actualizado con más detalles) -->
+                        <div class="bg-sky-50 border border-sky-100 rounded-xl p-3.5 mb-5 flex items-start gap-3">
+                            <i class="fa-solid fa-droplet text-sky-500 mt-0.5 text-lg shrink-0"></i>
+                            <div class="text-[13.5px] text-sky-900 leading-snug">
+                                ${p.yieldHighlight}
+                            </div>
                         </div>
 
-                        <!-- Card Content -->
-                        <div class="p-5 space-y-3">
-                            <div class="flex items-start justify-between gap-2">
-                                <div>
-                                    <span class="text-[11px] font-bold uppercase tracking-wider text-blue-700">${p.category}</span>
-                                    <h3 class="font-display font-black text-lg text-slate-900 leading-snug">${p.name}</h3>
-                                </div>
-                                <div class="text-right shrink-0">
-                                    <div class="font-display font-black text-xl text-red-600">$${p.price.toFixed(2)}</div>
-                                    <div class="text-[10px] font-bold text-slate-400">MXN</div>
-                                </div>
-                            </div>
+                        <!-- Botones de Acción -->
+                        <div class="mt-auto space-y-2.5">
+                            <a href="${waUrl}" target="_blank" class="flex items-center justify-center w-full py-3.5 rounded-xl bg-swipe-whatsapp text-white font-bold text-[15px] shadow-sm hover:bg-emerald-500 transition-colors">
+                                <i class="fa-brands fa-whatsapp text-xl mr-2"></i> Pedir esto ahora
+                            </a>
+                            
+                            <button onclick="addToCart('${p.id}')" class="flex items-center justify-center w-full py-3 rounded-xl font-bold text-[14px] transition-all ${inCartQty > 0 ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'}">
+                                <i class="fa-solid ${inCartQty > 0 ? 'fa-check text-emerald-500' : 'fa-cart-plus'} mr-2"></i>
+                                ${inCartQty > 0 ? `Agregado a la lista (${inCartQty})` : '+ Agregar a mi lista'}
+                            </button>
 
-                            <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed">${p.shortDesc}</p>
-
-                            <!-- Yield Highlight Pill -->
-                            <div class="bg-amber-50 border border-amber-200/80 rounded-xl p-2.5 flex items-start gap-2 text-xs font-bold text-amber-950">
-                                <i class="fa-solid fa-bolt text-amber-500 mt-0.5 shrink-0"></i>
-                                <span>${p.yieldHighlight}</span>
-                            </div>
-
-                            <!-- Expandable Dilution Accordion -->
-                            <details class="group bg-slate-50 rounded-2xl border border-slate-200/80 overflow-hidden">
-                                <summary class="cursor-pointer list-none px-3.5 py-2.5 text-xs font-bold text-blue-800 flex items-center justify-between hover:bg-blue-50/50 transition-colors">
-                                    <span class="flex items-center gap-1.5">
-                                        <i class="fa-solid fa-flask-vial text-blue-600"></i>
-                                        Ver tabla de diluciones y usos (${p.dilutions.length})
-                                    </span>
-                                    <i class="fa-solid fa-chevron-down text-[10px] transition-transform group-open:rotate-180"></i>
+                            <!-- Acordeón de Usos -->
+                            <details class="group pt-2">
+                                <summary class="cursor-pointer text-center text-sm font-semibold text-slate-400 hover:text-slate-700 py-1 transition-colors">
+                                    Ver formas de uso <i class="fa-solid fa-chevron-down ml-1 text-[10px] group-open:rotate-180 transition-transform"></i>
                                 </summary>
-                                <div class="p-3 pt-1 space-y-2 border-t border-slate-200/60">
+                                <div class="bg-slate-50 rounded-xl p-4 mt-3 border border-slate-100 animate-fadeIn">
                                     ${dilutionsHtml}
                                 </div>
                             </details>
                         </div>
                     </div>
-
-                    <!-- Bottom Action Buttons -->
-                    <div class="p-5 pt-0 space-y-2">
-                        <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="w-full py-3 px-4 rounded-2xl bg-swipe-whatsapp hover:bg-emerald-500 text-slate-950 font-display font-extrabold text-sm shadow-md flex items-center justify-center gap-2 transition-all">
-                            <i class="fa-brands fa-whatsapp text-lg"></i>
-                            <span>Pedir por WhatsApp</span>
-                        </a>
-                        <div class="flex items-center gap-2">
-                            <button onclick="addToCart('${p.id}')" class="flex-1 py-2.5 px-3 rounded-xl font-bold text-xs border ${inCartQty > 0 ? 'bg-slate-900 text-white border-slate-900' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200'} transition-all flex items-center justify-center gap-1.5">
-                                <i class="fa-solid ${inCartQty > 0 ? 'fa-check text-yellow-400' : 'fa-plus'}"></i>
-                                <span>${inCartQty > 0 ? `En mi lista (${inCartQty})` : 'Agregar a mi pedido'}</span>
-                            </button>
-                            <button onclick="openProductModal('${p.id}')" title="Ver ficha completa" class="py-2.5 px-3 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold text-xs transition-colors">
-                                <i class="fa-solid fa-expand"></i>
-                            </button>
-                        </div>
-                    </div>
-                </article>`;
+                </div>
+                `;
             }).join('');
         }
 
-        // ==========================================
-        // 3. FILTROS, BÚSQUEDA Y MODAL DE DETALLE
-        // ==========================================
+        // LÓGICA DE CATEGORÍAS
         function filterByCategory(cat) {
             currentCategory = cat;
-            document.getElementById('currentCategoryTitle').textContent = cat === 'Todos' ? 'Todos los Productos SWIPE' : `Categoría: ${cat}`;
-            
             document.querySelectorAll('.cat-btn').forEach(btn => {
                 if (btn.dataset.cat === cat) {
-                    btn.className = 'cat-btn active shrink-0 px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-blue-700 text-white shadow-sm';
+                    btn.className = 'cat-btn shrink-0 px-5 py-2 rounded-full text-sm font-semibold bg-emerald-600 text-white shadow-md transition-all';
                 } else {
-                    btn.className = 'cat-btn shrink-0 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all bg-white text-slate-600 hover:bg-slate-200/70 border border-slate-200';
+                    btn.className = 'cat-btn shrink-0 px-5 py-2 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all';
                 }
             });
             renderProducts();
         }
 
-        function setGridView(mode) {
-            currentViewMode = mode;
-            const gridBtn = document.getElementById('viewGridBtn');
-            const listBtn = document.getElementById('viewListBtn');
-            if (mode === 'grid') {
-                gridBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white flex items-center gap-1.5';
-                listBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 flex items-center gap-1.5';
-            } else {
-                listBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white flex items-center gap-1.5';
-                gridBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 flex items-center gap-1.5';
-            }
-            renderProducts();
-        }
-
-        function resetFilters() {
-            searchQuery = '';
-            document.getElementById('searchInputDesktop').value = '';
-            document.getElementById('searchInputMobile').value = '';
-            filterByCategory('Todos');
-        }
-
-        function openProductModal(productId) {
-            const p = PRODUCTS.find(item => item.id === productId);
-            if (!p) return;
-
-            const imgSource = p.imgUrl;
-            const waUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(p.whatsappText)}`;
-
-            const modal = document.getElementById('productModal');
-            const content = document.getElementById('productModalContent');
-
-            content.innerHTML = `
-                <div class="p-6 sm:p-8 space-y-6">
-                    <div class="flex items-start justify-between gap-4 border-b border-slate-100 pb-4">
-                        <div>
-                            <span class="inline-block text-xs font-bold px-3 py-1 rounded-full ${p.badgeColor} mb-2">${p.badge}</span>
-                            <h3 class="font-display font-black text-2xl text-slate-900">${p.name}</h3>
-                        </div>
-                        <button onclick="closeProductModal()" class="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600">
-                            <i class="fa-solid fa-xmark text-lg"></i>
-                        </button>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
-                        <div class="sm:col-span-5 bg-slate-50 rounded-2xl p-6 flex items-center justify-center h-60 border border-slate-100">
-                            <img src="${imgSource}" alt="${p.name}" class="max-h-48 max-w-full object-contain">
-                        </div>
-                        <div class="sm:col-span-7 space-y-3">
-                            <div class="font-display font-black text-3xl text-red-600">$${p.price.toFixed(2)} <span class="text-sm font-bold text-slate-400">MXN</span></div>
-                            <p class="text-sm text-slate-600 leading-relaxed">${p.shortDesc}</p>
-                            <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs font-bold text-amber-950 flex items-center gap-2">
-                                <i class="fa-solid fa-bolt text-amber-500 text-base"></i>
-                                <span>${p.yieldHighlight}</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="space-y-3">
-                        <h4 class="font-display font-bold text-sm uppercase tracking-wider text-slate-700">Guía de Dilución, Rendimiento y Usos:</h4>
-                        <div class="space-y-2.5">
-                            ${p.dilutions.map(d => `
-                                <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200">
-                                    <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
-                                        <span class="font-display font-bold text-sm text-slate-900">${d.title}</span>
-                                        <span class="text-xs font-extrabold px-2.5 py-1 rounded-lg bg-blue-700 text-white">${d.yieldText}</span>
-                                    </div>
-                                    <p class="text-xs font-bold text-blue-700 mb-1.5"><i class="fa-solid fa-flask mr-1"></i>${d.ratio}</p>
-                                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">${d.use}</p>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row items-center gap-3 pt-4 border-t border-slate-100">
-                        <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="w-full sm:flex-1 py-3.5 px-6 rounded-2xl bg-swipe-whatsapp hover:bg-emerald-500 text-slate-950 font-display font-black text-base shadow-lg flex items-center justify-center gap-2">
-                            <i class="fa-brands fa-whatsapp text-xl"></i>
-                            <span>Pedir Ahora por WhatsApp</span>
-                        </a>
-                        <button onclick="addToCart('${p.id}'); closeProductModal();" class="w-full sm:w-auto py-3.5 px-5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-plus text-yellow-400"></i>
-                            <span>Sumar a mi lista</span>
-                        </button>
-                    </div>
-                </div>
-            `;
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-        }
-
-        function closeProductModal() {
-            const modal = document.getElementById('productModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-
-        // ==========================================
-        // 4. CARRITO / ARMADOR DE PEDIDO MÚLTIPLE
-        // ==========================================
+        // LÓGICA DEL CARRITO
         function addToCart(productId) {
             cart[productId] = (cart[productId] || 0) + 1;
             updateCartUI();
@@ -1211,12 +509,12 @@
             const entries = Object.entries(cart);
             if (entries.length === 0) {
                 listEl.innerHTML = `
-                    <div class="text-center py-12 space-y-3">
-                        <div class="w-16 h-16 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center text-2xl mx-auto">
-                            <i class="fa-solid fa-basket-shopping"></i>
+                    <div class="text-center py-16 px-4">
+                        <div class="w-20 h-20 rounded-full bg-slate-100 text-slate-300 flex items-center justify-center text-3xl mx-auto mb-4">
+                            <i class="fa-solid fa-cart-arrow-down"></i>
                         </div>
-                        <p class="font-display font-bold text-slate-700">Tu lista de pedido está vacía</p>
-                        <p class="text-xs text-slate-500 max-w-xs mx-auto">Puedes pedir cualquier producto directamente con su botón verde de WhatsApp, o agregar varios aquí para armar un paquete.</p>
+                        <p class="font-bold text-slate-700 text-lg mb-1">Tu lista está vacía</p>
+                        <p class="text-sm text-slate-500">Agrega productos para armar un pedido completo y enviarlo en un solo mensaje.</p>
                     </div>
                 `;
             } else {
@@ -1228,27 +526,29 @@
                     totalPrice += subtotal;
 
                     return `
-                        <div class="bg-slate-50 rounded-2xl p-3.5 border border-slate-200 flex items-center justify-between gap-3">
+                        <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-100 flex items-center gap-4">
+                            <img src="${p.imgUrl}" alt="${p.name}" class="w-12 h-12 object-contain mix-blend-multiply">
                             <div class="flex-1">
-                                <h4 class="font-display font-bold text-sm text-slate-900">${p.name}</h4>
-                                <p class="text-xs text-slate-500">$${p.price.toFixed(2)} MXN c/u</p>
-                                <p class="text-xs font-extrabold text-red-600 mt-0.5">Subtotal: $${subtotal.toFixed(2)} MXN</p>
+                                <h4 class="font-bold text-[14px] text-slate-900 leading-tight mb-1">${p.name}</h4>
+                                <p class="text-[13px] font-bold text-emerald-600">$${subtotal.toFixed(2)}</p>
                             </div>
-                            <div class="flex items-center gap-2 bg-white rounded-xl border border-slate-200 p-1">
-                                <button onclick="changeCartQty('${p.id}', -1)" class="w-7 h-7 rounded-lg hover:bg-slate-100 text-slate-700 font-bold text-sm">-</button>
-                                <span class="w-6 text-center font-bold text-sm">${qty}</span>
-                                <button onclick="changeCartQty('${p.id}', 1)" class="w-7 h-7 rounded-lg hover:bg-slate-100 text-slate-700 font-bold text-sm">+</button>
+                            <div class="flex items-center gap-3 bg-slate-50 rounded-lg p-1 border border-slate-200">
+                                <button onclick="changeCartQty('${p.id}', -1)" class="w-7 h-7 rounded-md hover:bg-white hover:shadow-sm text-slate-600 font-bold">-</button>
+                                <span class="w-4 text-center font-bold text-sm text-slate-800">${qty}</span>
+                                <button onclick="changeCartQty('${p.id}', 1)" class="w-7 h-7 rounded-md hover:bg-white hover:shadow-sm text-slate-600 font-bold">+</button>
                             </div>
                         </div>
                     `;
                 }).join('');
             }
 
+            // Actualizar contadores visuales
             document.getElementById('cartCountBadge').textContent = totalItems;
             document.getElementById('floatingBarCount').textContent = totalItems;
             document.getElementById('floatingBarTotal').textContent = `$${totalPrice.toFixed(2)} MXN`;
-            document.getElementById('cartDrawerTotal').textContent = `$${totalPrice.toFixed(2)} MXN`;
+            document.getElementById('cartDrawerTotal').textContent = `$${totalPrice.toFixed(2)}`;
 
+            // Mostrar u ocultar barra flotante
             const floatingBar = document.getElementById('floatingOrderBar');
             if (totalItems > 0) {
                 floatingBar.classList.remove('hidden');
@@ -1262,10 +562,12 @@
             const backdrop = document.getElementById('cartDrawerBackdrop');
             if (open) {
                 backdrop.classList.remove('hidden');
-                drawer.classList.remove('translate-x-full');
+                drawer.classList.remove('drawer-closed');
+                drawer.classList.add('drawer-open');
             } else {
                 backdrop.classList.add('hidden');
-                drawer.classList.add('translate-x-full');
+                drawer.classList.remove('drawer-open');
+                drawer.classList.add('drawer-closed');
             }
         }
 
@@ -1274,177 +576,34 @@
             if (entries.length === 0) return;
 
             let total = 0;
-            let lines = ['Hola, vi el catálogo digital de SWIPE y me gustaría encargar el siguiente pedido:', ''];
+            let lines = ['*Hola, me gustaría hacer el siguiente pedido de SWIPE:*', ''];
 
             entries.forEach(([id, qty]) => {
                 const p = PRODUCTS.find(item => item.id === id);
                 if (p) {
                     const sub = p.price * qty;
                     total += sub;
-                    lines.push(`• ${qty}x *${p.name}* ($${sub.toFixed(2)} MXN)`);
+                    lines.push(`✅ ${qty}x ${p.name} ($${sub.toFixed(2)})`);
                 }
             });
 
             lines.push('');
-            lines.push(`*Total del pedido: $${total.toFixed(2)} MXN*`);
+            lines.push(`*Total a pagar: $${total.toFixed(2)} MXN*`);
 
             const note = document.getElementById('customerOrderNote').value.trim();
             if (note) {
-                lines.push(`Nota: ${note}`);
+                lines.push('');
+                lines.push(`💬 Nota: ${note}`);
             }
 
             const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(lines.join('\n'))}`;
             window.open(url, '_blank');
         }
 
-        function sendDirectGeneralWhatsApp() {
-            const msg = 'Hola, estoy viendo el catálogo web de productos SWIPE y me gustaría recibir asesoría para hacer un pedido.';
-            window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
-        }
-
-        // ==========================================
-        // 5. CALCULADORA INTERACTIVA DE RENDIMIENTO
-        // ==========================================
-        function updateCalculator() {
-            const val = document.getElementById('calcProductSelect').value;
-            const container = document.getElementById('calcResultsContainer');
-
-            const data = {
-                'swipe1l_liviana': {
-                    units: '200 Pistolas',
-                    unitSub: 'de ½ Litro (500 ml) c/u',
-                    costPerUnit: '$0.95 MXN',
-                    costSub: 'Costo por botella de ½ L preparada',
-                    formula: '5 ml de SWIPE en ½ L de agua (1:100)',
-                    desc: 'Ideal para vidrios, espejos, pantallas y cristalería.'
-                },
-                'swipe1l_normal': {
-                    units: '25 Pistolas',
-                    unitSub: 'de ½ Litro (500 ml) c/u',
-                    costPerUnit: '$7.64 MXN',
-                    costSub: 'Costo por botella de ½ L preparada',
-                    formula: '40 ml de SWIPE en ½ L de agua (1:12)',
-                    desc: 'Limpieza general de cocina, baño, tapicería, alfombras y manchas.'
-                },
-                'swipe1l_pesada': {
-                    units: '10 Pistolas',
-                    unitSub: 'de ½ Litro (500 ml) c/u',
-                    costPerUnit: '$19.10 MXN',
-                    costSub: 'Costo por botella desengrasante ½ L',
-                    formula: '100 ml de SWIPE en ½ L de agua (1:4)',
-                    desc: 'Desengrasante potente para parrillas, estufas, campanas y motores.'
-                },
-                'swipe35l_normal': {
-                    units: '87.5 Pistolas',
-                    unitSub: 'de ½ Litro (500 ml) c/u',
-                    costPerUnit: '$6.55 MXN',
-                    costSub: 'Costo por botella de ½ L preparada',
-                    formula: '40 ml de SWIPE en ½ L de agua (1:12)',
-                    desc: '¡Máximo ahorro familiar! En solución liviana rinde hasta 700 botellas.'
-                },
-                'swipol1l_normal': {
-                    units: '40 Pistolas',
-                    unitSub: 'de ½ Litro desinfectante c/u',
-                    costPerUnit: '$4.95 MXN',
-                    costSub: 'Costo por botella desinfectante ½ L',
-                    formula: '25 ml de SWIPOL en ½ L de agua (1:20)',
-                    desc: 'Desinfección hospitalaria y doméstica en 30 segundos.'
-                },
-                'swipol1l_trapear': {
-                    units: '120 Litros',
-                    unitSub: 'Equivalente a 12 cubetas de 10L',
-                    costPerUnit: '$16.50 MXN',
-                    costSub: 'Costo por cubeta de 10L desinfectante',
-                    formula: '83.3 ml de SWIPOL en cubeta de 10L (1:120)',
-                    desc: 'Desinfecta todos los pisos de tu hogar cuidando a tu familia.'
-                },
-                'magic35l': {
-                    units: '437.5 Litros',
-                    unitSub: 'Hasta 58 cubetas de 10L',
-                    costPerUnit: '$0.81 MXN',
-                    costSub: 'Costo por litro de limpiador preparado',
-                    formula: '60 a 80 ml por cubeta de 10L (1L rinde 125L)',
-                    desc: 'Pisos relucientes, desinfectados y con aroma duradero.'
-                },
-                'white12kg': {
-                    units: '30 Lavadoras',
-                    unitSub: 'Hasta 150 Kg de ropa limpia',
-                    costPerUnit: '$10.30 MXN',
-                    costSub: 'Costo por carga completa de 4 a 5 Kg',
-                    formula: '1 sobre de 40g por carga de 4 a 5 Kg',
-                    desc: 'Blancura óptica y cuidado de fibras sin residuos en tu lavadora.'
-                }
-            };
-
-            const item = data[val];
-            container.innerHTML = `
-                <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-5 flex flex-col justify-between">
-                    <span class="text-xs font-bold uppercase tracking-wider text-yellow-300">Rendimiento Total</span>
-                    <div class="my-2">
-                        <div class="font-display font-black text-3xl text-white">${item.units}</div>
-                        <div class="text-xs text-slate-300 mt-1">${item.unitSub}</div>
-                    </div>
-                    <div class="text-[11px] text-blue-200 font-medium border-t border-white/10 pt-2">
-                        <i class="fa-solid fa-check-circle mr-1 text-emerald-400"></i>Fórmula concentrada
-                    </div>
-                </div>
-
-                <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-5 flex flex-col justify-between">
-                    <span class="text-xs font-bold uppercase tracking-wider text-emerald-300">Tu Costo Real Diluido</span>
-                    <div class="my-2">
-                        <div class="font-display font-black text-3xl text-emerald-400">${item.costPerUnit}</div>
-                        <div class="text-xs text-slate-300 mt-1">${item.costSub}</div>
-                    </div>
-                    <div class="text-[11px] text-emerald-200 font-medium border-t border-white/10 pt-2">
-                        <i class="fa-solid fa-piggy-bank mr-1"></i>Ahorro superior al 70%
-                    </div>
-                </div>
-
-                <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-5 flex flex-col justify-between">
-                    <span class="text-xs font-bold uppercase tracking-wider text-sky-300">Cómo Prepararlo</span>
-                    <div class="my-2">
-                        <div class="font-display font-bold text-sm text-white">${item.formula}</div>
-                        <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">${item.desc}</p>
-                    </div>
-                    <div class="text-[11px] text-sky-200 font-medium border-t border-white/10 pt-2">
-                        <i class="fa-solid fa-leaf mr-1"></i>Menos plástico desechado
-                    </div>
-                </div>
-            `;
-        }
-
-        // ==========================================
-        // 6. INICIALIZACIÓN Y EVENTOS
-        // ==========================================
+        // INICIAR
         window.addEventListener('DOMContentLoaded', () => {
             renderProducts();
-            updateCalculator();
-
-            // Search inputs sync
-            const deskInput = document.getElementById('searchInputDesktop');
-            const mobInput = document.getElementById('searchInputMobile');
-            const clearBtn = document.getElementById('clearSearchDesktop');
-
-            function handleSearch(val) {
-                searchQuery = val;
-                deskInput.value = val;
-                mobInput.value = val;
-                if (val.trim().length > 0) {
-                    clearBtn.classList.remove('hidden');
-                } else {
-                    clearBtn.classList.add('hidden');
-                }
-                renderProducts();
-            }
-
-            deskInput.addEventListener('input', e => handleSearch(e.target.value));
-            mobInput.addEventListener('input', e => handleSearch(e.target.value));
-            clearBtn.addEventListener('click', () => handleSearch(''));
-
-            // Close modal on background click
-            document.getElementById('productModal').addEventListener('click', (e) => {
-                if (e.target.id === 'productModal') closeProductModal();
-            });
+            updateCartUI();
         });
     </script>
 </body>
