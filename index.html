@@ -38,53 +38,55 @@
         /* Animación suave para el carrito */
         .drawer-open { transform: translateX(0%); }
         .drawer-closed { transform: translateX(100%); }
+        
+        /* Ocultar scrollbar en los filtros */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="text-slate-800 antialiased pb-24">
 
-    <!-- CINTA SUPERIOR -->
-    <div class="bg-emerald-500 text-white text-sm py-2 px-4 text-center font-medium shadow-sm">
-        <i class="fa-solid fa-leaf mr-1"></i> Productos 100% Biodegradables y Seguros
+    <!-- CINTA SUPERIOR PREMIUM -->
+    <div class="bg-slate-900 text-slate-100 text-[13px] py-2 px-4 text-center font-medium tracking-wide">
+        <i class="fa-solid fa-leaf text-emerald-400 mr-1.5"></i> Fórmulas 100% Biodegradables y Seguras
     </div>
 
-    <!-- ENCABEZADO FIJO -->
-    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
-        <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <!-- Logo SWIPE -->
-                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-swipe-blue flex items-center justify-center shadow-md">
-                    <span class="font-bold text-yellow-400 text-lg sm:text-xl tracking-tighter">SW</span>
-                </div>
-                <div>
-                    <h1 class="font-bold text-xl text-slate-900 leading-none">SWIPE</h1>
-                    <p class="text-xs text-slate-500 mt-1">Catálogo Oficial</p>
-                </div>
-            </div>
+    <!-- ENCABEZADO FIJO (Estilo App Nativa) -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-lg border-b border-slate-200/80 shadow-sm">
+        <div class="max-w-5xl mx-auto px-4 pt-3 pb-2 flex flex-col gap-3">
             
-            <!-- Botones de Acción Superiores -->
-            <div class="flex items-center gap-2 sm:gap-3">
-                <a href="https://wa.me/526633285583?text=Hola,%20tengo%20una%20duda%20sobre%20los%20productos%20SWIPE" target="_blank" title="Dudas por WhatsApp" class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl hover:bg-emerald-100 transition">
-                    <i class="fa-brands fa-whatsapp"></i>
+            <!-- Fila superior: Logo y Botones -->
+            <div class="flex items-center justify-between">
+                <!-- Logo SWIPE Solo Texto -->
+                <a href="#" class="flex flex-col justify-center group">
+                    <h1 class="font-black text-2xl text-slate-900 leading-none tracking-tight group-hover:text-emerald-600 transition-colors">SWIPE</h1>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Catálogo</p>
                 </a>
                 
-                <!-- Botón de Mi Lista (Carrito) -->
-                <button onclick="toggleCartDrawer(true)" class="relative inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold shadow-md transition-all">
-                    <i class="fa-solid fa-cart-shopping text-yellow-400"></i>
-                    <span class="hidden sm:inline">Mi Lista</span>
-                    <span id="cartCountBadge" class="absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center text-[10px] font-extrabold rounded-full bg-yellow-400 text-slate-900 border-2 border-slate-900">0</span>
-                </button>
+                <!-- Botones de Acción Claros y Elegantes -->
+                <div class="flex items-center gap-1.5 sm:gap-3">
+                    <a href="https://wa.me/526633285583?text=Hola,%20tengo%20una%20duda%20sobre%20los%20productos%20SWIPE" target="_blank" title="Dudas por WhatsApp" class="w-10 h-10 rounded-full flex items-center justify-center text-emerald-600 hover:bg-emerald-50 transition-colors text-xl">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                    
+                    <button onclick="toggleCartDrawer(true)" class="flex items-center gap-2 px-3.5 py-2 rounded-full border border-slate-200 bg-white shadow-sm hover:shadow-md hover:border-slate-300 transition-all text-slate-700">
+                        <i class="fa-solid fa-cart-shopping text-slate-400"></i>
+                        <span class="hidden sm:inline font-bold text-sm">Mi Lista</span>
+                        <span id="cartCountBadge" class="bg-slate-800 text-white text-[11px] font-bold px-2 py-0.5 rounded-full min-w-[20px] text-center">0</span>
+                    </button>
+                </div>
             </div>
-        </div>
 
-        <!-- FILTROS -->
-        <div class="max-w-5xl mx-auto px-4 py-3 flex gap-2 overflow-x-auto" style="scrollbar-width: none;">
-            <button onclick="filterByCategory('Todos')" data-cat="Todos" class="cat-btn shrink-0 px-5 py-2 rounded-full text-sm font-semibold bg-emerald-600 text-white shadow-md transition-all">Todos</button>
-            <button onclick="filterByCategory('Limpieza General')" data-cat="Limpieza General" class="cat-btn shrink-0 px-5 py-2 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">Limpieza General</button>
-            <button onclick="filterByCategory('Baños')" data-cat="Baños" class="cat-btn shrink-0 px-5 py-2 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">Baños</button>
-            <button onclick="filterByCategory('Pisos')" data-cat="Pisos" class="cat-btn shrink-0 px-5 py-2 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">Pisos</button>
-            <button onclick="filterByCategory('Cocina')" data-cat="Cocina" class="cat-btn shrink-0 px-5 py-2 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">Cocina</button>
-            <button onclick="filterByCategory('Lavandería')" data-cat="Lavandería" class="cat-btn shrink-0 px-5 py-2 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">Lavandería</button>
-            <button onclick="filterByCategory('Control de Plagas')" data-cat="Control de Plagas" class="cat-btn shrink-0 px-5 py-2 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">Plagas</button>
+            <!-- Fila inferior: Filtros Táctiles -->
+            <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1" id="categoryNav">
+                <button onclick="filterByCategory('Todos')" data-cat="Todos" class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-sm font-bold bg-slate-800 text-white shadow-sm transition-all">Todos</button>
+                <button onclick="filterByCategory('Limpieza General')" data-cat="Limpieza General" class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900 transition-all">Limpieza General</button>
+                <button onclick="filterByCategory('Baños')" data-cat="Baños" class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900 transition-all">Baños</button>
+                <button onclick="filterByCategory('Pisos')" data-cat="Pisos" class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900 transition-all">Pisos</button>
+                <button onclick="filterByCategory('Cocina')" data-cat="Cocina" class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900 transition-all">Cocina</button>
+                <button onclick="filterByCategory('Lavandería')" data-cat="Lavandería" class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900 transition-all">Lavandería</button>
+                <button onclick="filterByCategory('Control de Plagas')" data-cat="Control de Plagas" class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900 transition-all">Plagas</button>
+            </div>
         </div>
     </header>
 
@@ -160,13 +162,28 @@
                 <span>Enviar mi pedido por WhatsApp</span>
             </button>
             
-            <!-- Botón Vaciar Carrito Ultra Visible -->
             <button onclick="clearCart()" class="w-full mt-4 py-2.5 text-sm font-bold text-red-500 hover:bg-red-50 hover:text-red-600 rounded-xl transition-colors flex items-center justify-center gap-2 border border-transparent hover:border-red-100">
                 <i class="fa-solid fa-trash-can"></i>
                 Vaciar toda la lista
             </button>
         </div>
     </aside>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex flex-col">
+                <p class="text-white font-bold text-base mb-1">Catálogo Digital de Productos SWIPE</p>
+                <p class="text-xs text-slate-400">Soluciones Biodegradables de Alto Rendimiento para el Hogar</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+                <a href="https://wa.me/526633285583?text=Hola,%20tengo%20una%20duda%20sobre%20los%20productos%20SWIPE" target="_blank" class="px-5 py-2.5 rounded-xl bg-swipe-whatsapp hover:bg-emerald-500 text-slate-950 font-bold text-xs sm:text-sm flex items-center gap-2 transition-colors">
+                    <i class="fa-brands fa-whatsapp text-base"></i>
+                    <span>¿Dudas? Escríbenos por WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </footer>
 
     <!-- JAVASCRIPT -->
     <script>
@@ -430,7 +447,7 @@
                         
                         <p class="text-slate-600 text-[14px] mb-4 leading-relaxed">${p.shortDesc}</p>
 
-                        <!-- Highlight de Rendimiento (Actualizado con más detalles) -->
+                        <!-- Highlight de Rendimiento -->
                         <div class="bg-sky-50 border border-sky-100 rounded-xl p-3.5 mb-5 flex items-start gap-3">
                             <i class="fa-solid fa-droplet text-sky-500 mt-0.5 text-lg shrink-0"></i>
                             <div class="text-[13.5px] text-sky-900 leading-snug">
@@ -470,9 +487,9 @@
             currentCategory = cat;
             document.querySelectorAll('.cat-btn').forEach(btn => {
                 if (btn.dataset.cat === cat) {
-                    btn.className = 'cat-btn shrink-0 px-5 py-2 rounded-full text-sm font-semibold bg-emerald-600 text-white shadow-md transition-all';
+                    btn.className = 'cat-btn shrink-0 px-4 py-1.5 rounded-full text-sm font-bold bg-slate-800 text-white shadow-sm transition-all';
                 } else {
-                    btn.className = 'cat-btn shrink-0 px-5 py-2 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all';
+                    btn.className = 'cat-btn shrink-0 px-4 py-1.5 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900 transition-all';
                 }
             });
             renderProducts();
@@ -499,6 +516,7 @@
             cart = {};
             updateCartUI();
             renderProducts();
+            toggleCartDrawer(false);
         }
 
         function updateCartUI() {
